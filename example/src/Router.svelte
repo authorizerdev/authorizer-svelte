@@ -17,10 +17,16 @@
     {#if state.loading}
       <h1>Loading...</h1>
     {:else if state.token}
-      <Route path="/" component={Dashboard} />
+      <Route path="/">
+        <Dashboard />
+      </Route>
     {:else}
-      <Route path="reset-password" component={ResetPassword} />
-      <Route path="/" component={Login} />
+      <Route path="reset-password">
+        <ResetPassword />
+      </Route>
+      <Route path="/">
+        <Login />
+      </Route>
     {/if}
   </div>
 </Router>
