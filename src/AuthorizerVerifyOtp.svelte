@@ -1,7 +1,5 @@
 <script></script>
 
-<main>
-    Authorizer Verify Otp Component
-</main>
+<main>Authorizer Verify Otp Component</main>
 
 <style></style>

@@ -1,7 +1,5 @@
 <script></script>
 
-<main>
-    Icon Root Component
-</main>
+<main>Icon Root Component</main>
 
 <style></style>

@@ -1,7 +1,5 @@
 <script></script>
 
-<main>
-    Authorizer Provider Component
-</main>
+<main>Authorizer Provider Component</main>
 
 <style></style>

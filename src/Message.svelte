@@ -1,7 +1,5 @@
 <script></script>
 
-<main>
-    Message Component
-</main>
+<main>Message Component</main>
 
 <style></style>

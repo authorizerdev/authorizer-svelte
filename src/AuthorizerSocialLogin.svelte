@@ -1,7 +1,5 @@
 <script></script>
 
-<main>
-    Authorizer Social Login Component
-</main>
+<main>Authorizer Social Login Component</main>
 
 <style></style>

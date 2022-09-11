@@ -1,7 +1,5 @@
 <script></script>
 
-<main>
-    Authorizer Root Component
-</main>
+<main>Authorizer Root Component</main>
 
 <style></style>
