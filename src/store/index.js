@@ -2,7 +2,7 @@ import { writable } from 'svelte/store'
 import { Authorizer } from '@authorizerdev/authorizer-js'
 import { hasWindow } from '../utils/window'
 
-export const state = writable({
+export const store = writable({
   config: {
     authorizerURL: '',
     redirectURL: '/',

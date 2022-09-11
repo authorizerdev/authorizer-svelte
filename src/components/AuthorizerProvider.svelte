@@ -1,21 +1,109 @@
 <script>
-  import { setContext } from 'svelte'
+  import { setContext, onMount } from 'svelte'
   import { Authorizer } from '@authorizerdev/authorizer-js'
-  import { state } from '../store/index'
+  import { store } from '../store/index'
   import { hasWindow } from '../utils/window'
+  import { AuthorizerProviderActionType } from '../constants/index'
 
   export let config
   export let onStateChangeCallback
 
-  let stateData
+  let state
 
-  state.subscribe(data => {
-    stateData = data
-    onStateChangeCallback && onStateChangeCallback(stateData)
+  store.subscribe(data => {
+    state = data
+    onStateChangeCallback && onStateChangeCallback(state)
   })
 
+  const dispatch = ({ type, payload }) => {
+    switch (type) {
+      case AuthorizerProviderActionType.SET_USER:
+        store.update(oldState => {
+          return {
+            ...oldState,
+            user: payload.user
+          }
+        })
+        break
+      case AuthorizerProviderActionType.SET_TOKEN:
+        store.update(oldState => {
+          return {
+            ...oldState,
+            token: payload.token
+          }
+        })
+        break
+      case AuthorizerProviderActionType.SET_LOADING:
+        store.update(oldState => {
+          return {
+            ...oldState,
+            loading: payload.loading
+          }
+        })
+        break
+      case AuthorizerProviderActionType.SET_CONFIG:
+        store.update(oldState => {
+          return {
+            ...oldState,
+            config: payload.config
+          }
+        })
+        break
+      case AuthorizerProviderActionType.SET_AUTH_DATA:
+        store.update(oldState => {
+          return {
+            ...oldState,
+            ...payload
+          }
+        })
+        break
+      default:
+        throw new Error()
+    }
+  }
+
+  let intervalRef = null
+
+  const getToken = async () => {
+    const metaRes = await state.authorizerRef.getMetaData()
+    try {
+      const res = await state.authorizerRef.getSession()
+      if (res.access_token && res.user) {
+        const token = {
+          access_token: res.access_token,
+          expires_in: res.expires_in,
+          id_token: res.id_token,
+          refresh_token: res.refresh_token || ''
+        }
+        dispatch({
+          type: AuthorizerProviderActionType.SET_AUTH_DATA,
+          payload: {
+            token,
+            user: res.user,
+            config: metaRes,
+            loading: false
+          }
+        })
+        if (intervalRef) clearInterval(intervalRef)
+        intervalRef = setInterval(() => {
+          getToken()
+        }, res.expires_in * 1000)
+      } else {
+        dispatch({
+          type: AuthorizerProviderActionType.SET_AUTH_DATA,
+          payload: {
+            token: null,
+            user: null,
+            config: metaRes,
+            loading: false
+          }
+        })
+      }
+    } catch (error) {}
+  }
+
   $: {
-    state.update(oldState => {
+    store.update(oldState => {
       return {
         ...oldState,
         config: { ...oldState.config, ...config },
@@ -27,12 +115,75 @@
             ? window.location.origin
             : '/',
           clientID: config?.client_id || ''
-        })
+        }),
+        setToken: token => {
+          dispatch({
+            type: AuthorizerProviderActionType.SET_TOKEN,
+            payload: {
+              token
+            }
+          })
+          if (token?.access_token) {
+            if (intervalRef) clearInterval(intervalRef)
+            intervalRef = setInterval(() => {
+              getToken()
+            }, token.expires_in * 1000)
+          }
+        },
+        setAuthData: data => {
+          dispatch({
+            type: AuthorizerProviderActionType.SET_AUTH_DATA,
+            payload: data
+          })
+          if (data.token?.access_token) {
+            if (intervalRef) clearInterval(intervalRef)
+            intervalRef = setInterval(() => {
+              getToken()
+            }, data.token.expires_in * 1000)
+          }
+        },
+        setUser: user => {
+          dispatch({
+            type: AuthorizerProviderActionType.SET_USER,
+            payload: {
+              user
+            }
+          })
+        },
+        setLoading: loading => {
+          dispatch({
+            type: AuthorizerProviderActionType.SET_LOADING,
+            payload: {
+              loading
+            }
+          })
+        },
+        logout: async () => {
+          dispatch({
+            type: AuthorizerProviderActionType.SET_LOADING,
+            payload: {
+              loading: true
+            }
+          })
+          await state.authorizerRef.logout()
+          const loggedOutState = {
+            user: null,
+            token: null,
+            loading: false,
+            config: state.config
+          }
+          dispatch({
+            type: AuthorizerProviderActionType.SET_AUTH_DATA,
+            payload: loggedOutState
+          })
+        }
       }
     })
   }
 
-  $: useAuthorizer = () => stateData
+  onMount(getToken)
+
+  $: useAuthorizer = () => state
 
   setContext('useAuthorizer', useAuthorizer)
 </script>
