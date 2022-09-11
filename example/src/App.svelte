@@ -1,11 +1,27 @@
 <script>
-	import { ByeBye, Hello } from '../../src/index'
-	export let name;
+	import {
+		AuthorizerProvider,
+		AuthorizerSignup,
+		AuthorizerBasicAuthLogin,
+		AuthorizerMagicLinkLogin,
+		AuthorizerForgotPassword,
+		AuthorizerSocialLogin,
+		AuthorizerResetPassword,
+		AuthorizerVerifyOtp,
+		Authorizer 
+	} from '../../src/index'
 </script>
 
 <main>
-	<Hello {name} />
-	<ByeBye {name} />
+	<AuthorizerProvider />
+	<AuthorizerSignup />
+	<AuthorizerBasicAuthLogin />
+	<AuthorizerMagicLinkLogin />
+	<AuthorizerForgotPassword />
+	<AuthorizerSocialLogin />
+	<AuthorizerResetPassword />
+	<AuthorizerVerifyOtp />
+	<Authorizer />
 </main>
 
 <style>
