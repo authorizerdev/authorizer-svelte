@@ -1,5 +1,6 @@
 <script>
-  import { AuthorizerProvider, Authorizer } from '../../src/index'
+  import { AuthorizerProvider } from '../../src/index'
+  import Router from './Router.svelte'
 </script>
 
 <main>
@@ -11,7 +12,7 @@
       console.log('state change from client ==>> ', state)
     }}
   >
-    <Authorizer />
+    <Router />
   </AuthorizerProvider>
 </main>
 
