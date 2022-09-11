@@ -14,21 +14,26 @@
     onStateChangeCallback && onStateChangeCallback(stateData)
   })
 
-  $: useAuthorizer = () => {
-    return {
-      ...stateData,
-      config: { ...stateData.config, ...config },
-      authorizerRef: new Authorizer({
-        authorizerURL: config?.authorizerURL || '',
-        redirectURL: config?.redirectURL
-          ? config.redirectURL
-          : hasWindow()
-          ? window.location.origin
-          : '/',
-        clientID: config?.client_id || ''
-      })
-    }
+  $: {
+    state.update(oldState => {
+      return {
+        ...oldState,
+        config: { ...oldState.config, ...config },
+        authorizerRef: new Authorizer({
+          authorizerURL: config?.authorizerURL || '',
+          redirectURL: config?.redirectURL
+            ? config.redirectURL
+            : hasWindow()
+            ? window.location.origin
+            : '/',
+          clientID: config?.client_id || ''
+        })
+      }
+    })
   }
+
+  $: useAuthorizer = () => stateData
+
   setContext('useAuthorizer', useAuthorizer)
 </script>
 
