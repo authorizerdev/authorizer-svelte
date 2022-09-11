@@ -1,5 +1,5 @@
 <script>
-  import { setContext, onMount, afterUpdate } from 'svelte'
+  import { onMount, afterUpdate } from 'svelte'
   import { Authorizer } from '@authorizerdev/authorizer-js'
   import { store } from '../store/index'
   import { hasWindow } from '../utils/window'
@@ -200,9 +200,11 @@
     }
   })
 
-  $: useAuthorizer = () => state
-
-  setContext('useAuthorizer', useAuthorizer)
+  setTimeout(() => {
+    store.update(oldState => {
+      return { ...oldState, user: 'anik' }
+    })
+  }, 2000)
 </script>
 
 <slot>Authorizer Provider Component</slot>
