@@ -7,8 +7,8 @@
     config={{
       authorizerURL: 'http://localhost:8080'
     }}
-    stateChangeCallback={async ({ user, token }) => {
-      console.log(user, token)
+    onStateChangeCallback={async state => {
+      console.log('state change from client ==>> ', state)
     }}
   >
     <div>Example App</div>
