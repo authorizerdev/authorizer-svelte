@@ -1,5 +1,5 @@
 <script>
-  import { setContext, onMount } from 'svelte'
+  import { setContext, onMount, afterUpdate } from 'svelte'
   import { Authorizer } from '@authorizerdev/authorizer-js'
   import { store } from '../store/index'
   import { hasWindow } from '../utils/window'
@@ -12,7 +12,6 @@
 
   store.subscribe(data => {
     state = data
-    onStateChangeCallback && onStateChangeCallback(state)
   })
 
   const dispatch = ({ type, payload }) => {
@@ -99,7 +98,17 @@
           }
         })
       }
-    } catch (error) {}
+    } catch (error) {
+      dispatch({
+        type: AuthorizerProviderActionType.SET_AUTH_DATA,
+        payload: {
+          token: null,
+          user: null,
+          config: metaRes,
+          loading: false
+        }
+      })
+    }
   }
 
   $: {
@@ -181,7 +190,15 @@
     })
   }
 
-  onMount(getToken)
+  onMount(() => {
+    getToken()
+  })
+
+  afterUpdate(() => {
+    if (onStateChangeCallback) {
+      onStateChangeCallback(state)
+    }
+  })
 
   $: useAuthorizer = () => state
 
