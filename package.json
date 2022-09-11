@@ -43,5 +43,7 @@
       "pre-commit": "run-s format lint"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "@authorizerdev/authorizer-js": "^1.1.0"
+  }
 }

@@ -1,27 +1,18 @@
 <script>
-  import {
-    AuthorizerProvider,
-    AuthorizerSignup,
-    AuthorizerBasicAuthLogin,
-    AuthorizerMagicLinkLogin,
-    AuthorizerForgotPassword,
-    AuthorizerSocialLogin,
-    AuthorizerResetPassword,
-    AuthorizerVerifyOtp,
-    Authorizer
-  } from '../../src/index'
+  import { AuthorizerProvider } from '../../src/index'
 </script>
 
 <main>
-  <AuthorizerProvider />
-  <AuthorizerSignup />
-  <AuthorizerBasicAuthLogin />
-  <AuthorizerMagicLinkLogin />
-  <AuthorizerForgotPassword />
-  <AuthorizerSocialLogin />
-  <AuthorizerResetPassword />
-  <AuthorizerVerifyOtp />
-  <Authorizer />
+  <AuthorizerProvider
+    config={{
+      authorizerURL: 'http://localhost:8080'
+    }}
+    stateChangeCallback={async ({ user, token }) => {
+      console.log(user, token)
+    }}
+  >
+    <div>Example App</div>
+  </AuthorizerProvider>
 </main>
 
 <style>
@@ -30,13 +21,6 @@
     padding: 1em;
     max-width: 240px;
     margin: 0 auto;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
   }
 
   @media (min-width: 640px) {
