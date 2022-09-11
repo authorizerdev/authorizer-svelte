@@ -5,15 +5,15 @@
  * - https://github.com/rollup/rollup-plugin-svelte#pkgsvelte
  * @see {@link ../package.json}
  */
-import AuthorizerProvider from './AuthorizerProvider.svelte'
-import AuthorizerSignup from './AuthorizerSignup.svelte'
-import AuthorizerBasicAuthLogin from './AuthorizerBasicAuthLogin.svelte'
-import AuthorizerMagicLinkLogin from './AuthorizerMagicLinkLogin.svelte'
-import AuthorizerForgotPassword from './AuthorizerForgotPassword.svelte'
-import AuthorizerSocialLogin from './AuthorizerSocialLogin.svelte'
-import AuthorizerResetPassword from './AuthorizerResetPassword.svelte'
-import AuthorizerVerifyOtp from './AuthorizerVerifyOtp.svelte'
-import AuthorizerRoot from './AuthorizerRoot.svelte'
+import AuthorizerProvider from './components/AuthorizerProvider.svelte'
+import AuthorizerSignup from './components/AuthorizerSignup.svelte'
+import AuthorizerBasicAuthLogin from './components/AuthorizerBasicAuthLogin.svelte'
+import AuthorizerMagicLinkLogin from './components/AuthorizerMagicLinkLogin.svelte'
+import AuthorizerForgotPassword from './components/AuthorizerForgotPassword.svelte'
+import AuthorizerSocialLogin from './components/AuthorizerSocialLogin.svelte'
+import AuthorizerResetPassword from './components/AuthorizerResetPassword.svelte'
+import AuthorizerVerifyOtp from './components/AuthorizerVerifyOtp.svelte'
+import AuthorizerRoot from './components/AuthorizerRoot.svelte'
 
 export {
   AuthorizerProvider,
