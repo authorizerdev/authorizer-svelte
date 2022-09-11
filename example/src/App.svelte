@@ -1,5 +1,5 @@
 <script>
-  import { AuthorizerProvider } from '../../src/index'
+  import { AuthorizerProvider, Authorizer } from '../../src/index'
 </script>
 
 <main>
@@ -11,7 +11,7 @@
       console.log('state change from client ==>> ', state)
     }}
   >
-    <div>Example App</div>
+    <Authorizer />
   </AuthorizerProvider>
 </main>
 
