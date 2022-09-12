@@ -3,7 +3,7 @@
   import Dashboard from './routes/Dashboard.svelte'
   import Login from './routes/Login.svelte'
   import ResetPassword from './routes/ResetPassword.svelte'
-  import { store } from '../../src/store/index'
+  import { store } from '../../src/index'
 
   let state
 
@@ -16,7 +16,7 @@
   <div>
     {#if state.loading}
       <h1>Loading...</h1>
-    {:else if state.token}
+    {:else if state.user}
       <Route path="/">
         <Dashboard />
       </Route>
