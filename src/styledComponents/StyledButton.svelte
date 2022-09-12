@@ -31,6 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 375px;
     max-height: 64px;
     border-radius: var(--radius-button);
     border-color: var(--text-color) !important;
