@@ -9,7 +9,7 @@
     font-size: var(--fonts-medium-text);
     box-sizing: border-box;
   }
-  *,
+  .styled-wrapper *,
   *:before,
   *:after {
     box-sizing: inherit;
