@@ -7,7 +7,7 @@
 
   let state
 
-  const store = getContext('authorizerStore')
+  const store = getContext('authorizerContext')
 
   store.subscribe(data => {
     state = data

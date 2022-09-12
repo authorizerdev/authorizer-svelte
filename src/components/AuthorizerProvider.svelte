@@ -200,7 +200,7 @@
     }
   })
 
-  setContext('authorizerStore', store)
+  setContext('authorizerContext', store)
 </script>
 
 <slot>Authorizer Provider Component</slot>
