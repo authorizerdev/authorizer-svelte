@@ -44,7 +44,7 @@
         store.update(oldState => {
           return {
             ...oldState,
-            config: payload.config
+            config: { ...oldState.config, ...payload.config }
           }
         })
         break
@@ -52,7 +52,8 @@
         store.update(oldState => {
           return {
             ...oldState,
-            ...payload
+            ...payload,
+            config: { ...oldState.config, ...payload.config }
           }
         })
         break
