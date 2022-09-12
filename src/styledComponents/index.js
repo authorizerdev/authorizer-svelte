@@ -5,6 +5,9 @@ import StyledSeparator from './StyledSeparator.svelte'
 import StyledFooter from './StyledFooter.svelte'
 import StyledMessageWrapper from './StyledMessageWrapper.svelte'
 import StyledFlex from './StyledFlex.svelte'
+import StyledFormGroup from './StyledFormGroup.svelte'
+import StyledCheckbox from './StyledCheckbox.svelte'
+import StyledPasswordStrengthWrapper from './StyledPasswordStrengthWrapper.svelte'
 
 export {
   StyledWrapper,
@@ -13,5 +16,8 @@ export {
   StyledSeparator,
   StyledFooter,
   StyledMessageWrapper,
-  StyledFlex
+  StyledFlex,
+  StyledFormGroup,
+  StyledCheckbox,
+  StyledPasswordStrengthWrapper
 }
