@@ -1,13 +1,7 @@
 <script>
-  import { StyledWrapper, StyledButton } from '../styledComponents/index'
-  import { ButtonAppearance } from '../constants'
-  import Google from '../icons/Google.svelte'
+  import { StyledWrapper } from '../styledComponents/index'
 </script>
 
-<!-- <StyledWrapper /> -->
-<StyledButton appearance={ButtonAppearance.Default}>
-  <Google />
-  Sign in with Apple
-</StyledButton>
+<StyledWrapper>Authorizer Root Component</StyledWrapper>
 
 <style></style>

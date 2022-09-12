@@ -211,6 +211,7 @@
     --primary-color: #3b82f6;
     --primary-disabled-color: #60a5fa;
     --gray-color: #d1d5db;
+    --white-color: #ffffff;
     --danger-color: #dc2626;
     --success-color: #10b981;
     --text-color: #374151;

@@ -4,7 +4,7 @@
   export let style = {
     width: '100%'
   }
-  export let appearance = 'Default'
+  export let appearance = ButtonAppearance.Default
   export let disabled = false
 </script>
 
@@ -15,10 +15,10 @@
     ? 'var(--primary-disabled-color)'
     : appearance === ButtonAppearance.Primary
     ? 'var(--primary-color)'
-    : '#ffffff'};
+    : 'var(--white-color)'};
     color: {appearance === ButtonAppearance.Default
     ? 'var(--text-color)'
-    : '#ffffff'};
+    : 'var(--white-color)'};
     border: {appearance === ButtonAppearance.Primary ? '0px' : '1px'};"
   {disabled}
 >
