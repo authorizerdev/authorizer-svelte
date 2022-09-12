@@ -16,7 +16,7 @@
   <div>
     {#if state.loading}
       <h1>Loading...</h1>
-    {:else if state.user}
+    {:else if state.token}
       <Route path="/">
         <Dashboard />
       </Route>

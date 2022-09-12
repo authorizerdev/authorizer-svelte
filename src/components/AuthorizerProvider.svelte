@@ -199,12 +199,6 @@
       onStateChangeCallback(state)
     }
   })
-
-  setTimeout(() => {
-    store.update(oldState => {
-      return { ...oldState, user: 'anik' }
-    })
-  }, 2000)
 </script>
 
 <slot>Authorizer Provider Component</slot>
