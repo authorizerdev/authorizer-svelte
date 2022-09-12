@@ -6,11 +6,11 @@
 <main class="container">
   <div
     style="
-        width: {'400px'};
+        width: {`400px`};
         margin: {`10px auto`};
         border: {`1px solid #D1D5DB`};
         padding: {`25px 20px`};
-        border-radius: {'5px'}
+        border-radius: {`5px`}
       "
   >
     <AuthorizerProvider
