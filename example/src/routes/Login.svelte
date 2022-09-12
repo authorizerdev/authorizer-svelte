@@ -2,8 +2,8 @@
   import { Authorizer } from '../../../src/index'
 </script>
 
-<main>
+<div>
   <Authorizer />
-</main>
+</div>
 
 <style></style>

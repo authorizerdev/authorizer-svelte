@@ -1,5 +1,5 @@
 <script></script>
 
-<main>Reset Password</main>
+<div>Reset Password</div>
 
 <style></style>
