@@ -31,7 +31,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 375px;
     max-height: 64px;
     border-radius: var(--radius-button);
     border-color: var(--text-color) !important;
@@ -42,9 +41,5 @@
   .styled-button:disabled {
     cursor: not-allowed;
     background-color: var(--primary-disabled-color);
-  }
-  .styled-button svg {
-    position: absolute;
-    left: 10px;
   }
 </style>
