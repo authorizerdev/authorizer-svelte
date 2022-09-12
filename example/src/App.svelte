@@ -3,30 +3,41 @@
   import Router from './Router.svelte'
 </script>
 
-<main>
-  <AuthorizerProvider
-    config={{
-      authorizerURL: 'http://localhost:8080'
-    }}
-    onStateChangeCallback={async state => {
-      console.log('state change from client ==>> ', state)
-    }}
+<main class="container">
+  <div
+    style="
+        width: {'400px'};
+        margin: {`10px auto`};
+        border: {`1px solid #D1D5DB`};
+        padding: {`25px 20px`};
+        border-radius: {'5px'}
+      "
   >
-    <Router />
-  </AuthorizerProvider>
+    <AuthorizerProvider
+      config={{
+        authorizerURL: 'http://localhost:8080'
+      }}
+      onStateChangeCallback={async state => {
+        console.log('state change from client ==>> ', state)
+      }}
+    >
+      <Router />
+    </AuthorizerProvider>
+  </div>
 </main>
 
 <style>
   main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
+    font-family: -apple-system, system-ui, sans-serif;
+    color: #374151;
+    font-size: 14px;
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
+  .container {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 </style>
