@@ -1,11 +1,13 @@
 <script>
+  import { getContext } from 'svelte'
   import { Router, Route } from 'svelte-routing'
   import Dashboard from './routes/Dashboard.svelte'
   import Login from './routes/Login.svelte'
   import ResetPassword from './routes/ResetPassword.svelte'
-  import { store } from '../../src/index'
 
   let state
+
+  const store = getContext('authorizerStore')
 
   store.subscribe(data => {
     state = data

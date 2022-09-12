@@ -1,5 +1,5 @@
 <script>
-  import { onMount, afterUpdate } from 'svelte'
+  import { onMount, afterUpdate, setContext } from 'svelte'
   import { Authorizer } from '@authorizerdev/authorizer-js'
   import { store } from '../store/index'
   import { hasWindow } from '../utils/window'
@@ -199,6 +199,8 @@
       onStateChangeCallback(state)
     }
   })
+
+  setContext('authorizerStore', store)
 </script>
 
 <slot>Authorizer Provider Component</slot>

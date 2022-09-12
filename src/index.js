@@ -14,7 +14,6 @@ import AuthorizerSocialLogin from './components/AuthorizerSocialLogin.svelte'
 import AuthorizerResetPassword from './components/AuthorizerResetPassword.svelte'
 import AuthorizerVerifyOtp from './components/AuthorizerVerifyOtp.svelte'
 import AuthorizerRoot from './components/AuthorizerRoot.svelte'
-import { store } from './store/index'
 
 export {
   AuthorizerProvider,
@@ -25,6 +24,5 @@ export {
   AuthorizerSocialLogin,
   AuthorizerResetPassword,
   AuthorizerVerifyOtp,
-  AuthorizerRoot as Authorizer,
-  store
+  AuthorizerRoot as Authorizer
 }
