@@ -1,12 +1,12 @@
 <script>
   import { StyledWrapper, StyledButton } from '../styledComponents/index'
   import { ButtonAppearance } from '../constants'
-  import Apple from '../icons/Apple.svelte'
+  import Google from '../icons/Google.svelte'
 </script>
 
 <!-- <StyledWrapper /> -->
 <StyledButton appearance={ButtonAppearance.Default}>
-  <Apple />
+  <Google />
   Sign in with Apple
 </StyledButton>
 
