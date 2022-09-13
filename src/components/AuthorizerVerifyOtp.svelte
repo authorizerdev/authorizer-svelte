@@ -7,9 +7,7 @@
   } from '../styledComponents'
   import { store } from '../store'
   import { isValidOtp } from '../utils/common'
-  import { MessageType } from '../constants/index'
-  import { ButtonAppearance } from '../constants/index'
-  import { Views } from '../constants/index'
+  import { ButtonAppearance, Views, MessageType } from '../constants'
   import Message from './Message.svelte'
 
   export let setView
