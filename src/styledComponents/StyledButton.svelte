@@ -21,6 +21,7 @@
     : 'var(--white-color)'};
     border: {appearance === ButtonAppearance.Primary ? '0px' : '1px'};"
   {disabled}
+  on:click
 >
   <slot />
 </button>

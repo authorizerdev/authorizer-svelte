@@ -8,6 +8,7 @@
     color: var(--text-color);
     font-size: var(--fonts-medium-text);
     box-sizing: border-box;
+    width: 100%;
   }
   .styled-wrapper *,
   *:before,
