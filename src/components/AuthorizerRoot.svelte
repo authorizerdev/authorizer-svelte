@@ -10,10 +10,10 @@
   import { hasWindow } from '../utils/window'
   import { createRandomString } from '../utils/common'
 
-  export let onLogin
-  export let onSignup
-  export let onMagicLinkLogin
-  export let onForgotPassword
+  export let onLogin = () => {}
+  export let onSignup = () => {}
+  export let onMagicLinkLogin = () => {}
+  export let onForgotPassword = () => {}
 
   let state
   let view = Views.Login

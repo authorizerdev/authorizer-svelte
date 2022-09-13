@@ -195,11 +195,9 @@
     getToken()
   })
 
-  afterUpdate(() => {
-    if (onStateChangeCallback) {
-      onStateChangeCallback(state)
-    }
-  })
+  $: if (onStateChangeCallback) {
+    onStateChangeCallback(state)
+  }
 
   setContext('authorizerContext', store)
 </script>

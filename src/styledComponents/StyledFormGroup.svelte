@@ -1,17 +1,13 @@
 <script>
-  export let hasError = false
+  export let hasError = true
 </script>
 
 <div class="styled-form-group">
-  <slot name="form-input-label" class="form-input-label" />
-  <slot
-    name="form-input-field"
-    class="form-input-field {hasError ? 'input-error-content' : ''}"
-    style="border-color: {hasError
-      ? 'var(--danger-color)'
-      : 'var(--text-color)'};"
-  />
-  <slot name="form-input-error" class="form-input-error" />
+  <slot name="form-input-label" />
+  <slot name="form-input-field" />
+  {#if hasError}
+    <slot name="form-input-error" />
+  {/if}
 </div>
 
 <style>
@@ -21,14 +17,14 @@
     background-color: var(--white-color);
     padding: 0 0 15px;
   }
-  .styled-form-group .form-input-label {
+  div :global(.form-input-label) {
     padding: 2.5px;
   }
-  .input-error-content:hover {
-    outline-color: var(--danger-color);
+  div :global(.form-input-label > span) {
+    color: var(--danger-color);
   }
-  .styled-form-group .form-input-field {
-    width: 100%;
+  div :global(.form-input-field) {
+    width: 94.5%;
     margin-top: 5px;
     padding: 10px;
     display: flex;
@@ -37,10 +33,21 @@
     border-radius: var(--radius-input);
     border: 1px;
     border-style: solid;
+    border-color: var(--text-color);
   }
-  .styled-form-group .form-input-error {
+  div :global(.input-error-content) {
+    border-color: var(--danger-color) !important;
+  }
+  div :global(.input-error-content:hover) {
+    outline-color: var(--danger-color);
+  }
+  div :global(.input-error-content:focus) {
+    outline-color: var(--danger-color);
+  }
+  div :global(.form-input-error) {
     font-size: 12px;
     font-weight: 400;
     color: red;
+    border-color: var(--danger-color);
   }
 </style>
