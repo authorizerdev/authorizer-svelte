@@ -73,6 +73,33 @@
     </StyledButton>
     <br />
   {/if}
+  {#if state.config.is_facebook_login_enabled}
+    <StyledButton
+      on:click={() => {
+        if (window?.location)
+          window.location.href = `${state.config.authorizerURL}/oauth_login/facebook?${queryParams}`
+      }}
+    >
+      <Facebook />
+      Sign in with Facebook
+    </StyledButton>
+    <br />
+  {/if}
+  {#if state.config.is_linkedin_login_enabled}
+    <StyledButton
+      on:click={() => {
+        if (window?.location)
+          window.location.href = `${state.config.authorizerURL}/oauth_login/linkedin?${queryParams}`
+      }}
+    >
+      <Linkedin />
+      Sign in with Linkedin
+    </StyledButton>
+    <br />
+  {/if}
+  {#if hasSocialLogin && (state.config.is_basic_authentication_enabled || state.config.is_magic_link_login_enabled)}
+    <StyledSeparator>OR</StyledSeparator>
+  {/if}
 </div>
 
 <style></style>
