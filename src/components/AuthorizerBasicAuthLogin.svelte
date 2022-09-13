@@ -9,7 +9,7 @@
   import AuthorizerVerifyOtp from './AuthorizerVerifyOtp.svelte'
   import Message from './Message.svelte'
   import { ButtonAppearance, MessageType, Views } from '../constants'
-  import { capitalizeFirstLetter, isValidEmail } from '../utils/common'
+  import { isValidEmail } from '../utils/common'
 
   export let setView
   export let onLogin
@@ -115,7 +115,7 @@
           bind:value={formData.email}
         />
         <div slot="form-input-error" class="form-input-error">
-          {capitalizeFirstLetter(errorData.email)}
+          {errorData.email}
         </div>
       </StyledFormGroup>
       <StyledFormGroup hasError={errorData.password}>
@@ -133,7 +133,7 @@
           bind:value={formData.password}
         />
         <div slot="form-input-error" class="form-input-error">
-          {capitalizeFirstLetter(errorData.password)}
+          {errorData.password}
         </div>
       </StyledFormGroup>
       <br />

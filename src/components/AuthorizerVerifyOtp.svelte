@@ -6,7 +6,7 @@
     StyledLink
   } from '../styledComponents'
   import { store } from '../store'
-  import { capitalizeFirstLetter, isValidOtp } from '../utils/common'
+  import { isValidOtp } from '../utils/common'
   import { MessageType } from '../constants/index'
   import { ButtonAppearance } from '../constants/index'
   import { Views } from '../constants/index'
@@ -132,7 +132,7 @@
       bind:value={componentState.otp}
     />
     <div slot="form-input-error" class="form-input-error">
-      {capitalizeFirstLetter(otpError)}
+      {otpError}
     </div>
   </StyledFormGroup>
   <br />

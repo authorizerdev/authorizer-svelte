@@ -6,9 +6,9 @@
 
 <div
   class="styled-message-wrapper"
-  style="background-color: {type === MessageType.Error
-    ? 'var(--danger-color)'
-    : 'var(--success-color)'};"
+  style={type === MessageType.Error
+    ? 'background-color: var(--danger-color)'
+    : 'background-color: var(--success-color)'}
 >
   <slot />
 </div>
