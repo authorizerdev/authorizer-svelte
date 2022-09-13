@@ -15,20 +15,18 @@
 </script>
 
 <Router>
-  <div>
-    {#if state.loading}
-      <h1>Loading...</h1>
-    {:else if state.token}
-      <Route path="/">
-        <Dashboard />
-      </Route>
-    {:else}
-      <Route path="reset-password">
-        <ResetPassword />
-      </Route>
-      <Route path="/">
-        <Login />
-      </Route>
-    {/if}
-  </div>
+  {#if state.loading}
+    <h1>Loading...</h1>
+  {:else if state.token}
+    <Route path="/">
+      <Dashboard />
+    </Route>
+  {:else}
+    <Route path="reset-password">
+      <ResetPassword />
+    </Route>
+    <Route path="/">
+      <Login />
+    </Route>
+  {/if}
 </Router>
