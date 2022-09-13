@@ -1,5 +1,5 @@
 <script>
-  import { Authorizer } from '../../../src/index'
+  import { Authorizer } from '../../../src'
 </script>
 
 <h1>Welcome to Authorizer</h1>

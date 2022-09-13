@@ -1,9 +1,9 @@
 <script>
   import { onMount, afterUpdate, setContext } from 'svelte'
   import { Authorizer } from '@authorizerdev/authorizer-js'
-  import { store } from '../store/index'
+  import { store } from '../store'
   import { hasWindow } from '../utils/window'
-  import { AuthorizerProviderActionType } from '../constants/index'
+  import { AuthorizerProviderActionType } from '../constants'
 
   export let config
   export let onStateChangeCallback

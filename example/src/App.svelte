@@ -1,5 +1,5 @@
 <script>
-  import { AuthorizerProvider } from '../../src/index'
+  import { AuthorizerProvider } from '../../src'
   import Router from './Router.svelte'
 </script>
 

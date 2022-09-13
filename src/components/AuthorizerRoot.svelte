@@ -1,11 +1,11 @@
 <script>
-  import { StyledWrapper } from '../styledComponents/index'
+  import { StyledWrapper } from '../styledComponents'
   import AuthorizerSignup from './AuthorizerSignup.svelte'
   import AuthorizerSocialLogin from './AuthorizerSocialLogin.svelte'
   import AuthorizerBasicAuthLogin from './AuthorizerBasicAuthLogin.svelte'
   import AuthorizerMagicLinkLogin from './AuthorizerMagicLinkLogin.svelte'
   import AuthorizerForgotPassword from './AuthorizerForgotPassword.svelte'
-  import { store } from '../store/index'
+  import { store } from '../store'
   import { Views } from '../constants'
   import { hasWindow } from '../utils/window'
   import { createRandomString } from '../utils/common'

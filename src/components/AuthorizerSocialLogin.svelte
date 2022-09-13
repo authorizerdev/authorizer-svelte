@@ -1,16 +1,8 @@
 <script>
-  import { StyledButton, StyledSeparator } from '../styledComponents/index'
-  import {
-    Google,
-    Github,
-    Facebook,
-    Linkedin,
-    Apple,
-    Twitter
-  } from '../icons/index'
-  import { store } from '../store/index'
+  import { StyledButton, StyledSeparator } from '../styledComponents'
+  import { Google, Github, Facebook, Linkedin, Apple } from '../icons'
+  import { store } from '../store'
   import { createQueryParams } from '../utils/common'
-  import { ButtonAppearance } from '../constants'
 
   export let urlProps = {
     scope: []
