@@ -92,7 +92,9 @@ export const validatePassword = (value = '') => {
     }
   })
 
-  if (res.score <= 2) {
+  if (res.score === 0) {
+    res.strength = ''
+  } else if (res.score <= 2) {
     res.strength = 'Weak'
   } else if (res.score <= 4) {
     res.strength = 'Good'
