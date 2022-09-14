@@ -1,5 +1,7 @@
-<script></script>
+<script>
+  import { AuthorizerResetPassword } from '../../../src'
+</script>
 
-<div>Reset Password</div>
-
-<style></style>
+<h1 style="text-align: center;">Reset Password</h1>
+<br />
+<AuthorizerResetPassword />
