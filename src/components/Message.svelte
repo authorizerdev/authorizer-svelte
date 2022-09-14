@@ -6,7 +6,7 @@
 
   export let type = MessageType.Success
   export let text = ''
-  export let onClose = () => {}
+  export let onClose
 </script>
 
 <StyledMessageWrapper {type}>
