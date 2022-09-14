@@ -9,7 +9,6 @@
   import { Views, MessageType, ButtonAppearance } from '../constants'
   import { isValidEmail } from '../utils/common'
   import Message from './Message.svelte'
-  import PasswordStrengthIndicator from './PassowrdStrengthIndicator.svelte'
   import PassowrdStrengthIndicator from './PassowrdStrengthIndicator.svelte'
 
   export let setView
@@ -175,7 +174,10 @@
       </div>
     </StyledFormGroup>
     {#if state.config.is_strong_password_enabled}
-      <PassowrdStrengthIndicator value={formData.password} {setDisableButton} />
+      <PassowrdStrengthIndicator
+        value={formData.password || ''}
+        {setDisableButton}
+      />
       <br />
     {/if}
     <StyledButton
@@ -198,18 +200,10 @@
   </form>
   {#if setView}
     <StyledFooter>
-      <StyledLink
-        on:click={() => setView(Views.ForgotPassword)}
-        marginBottom={'10px'}
-      >
-        Forgot Password?
-      </StyledLink>
-      {#if state.config.is_sign_up_enabled}
-        <div>
-          Already have an account?
-          <StyledLink on:click={() => setView(Views.Login)}>Log In</StyledLink>
-        </div>
-      {/if}
+      <div>
+        Already have an account?
+        <StyledLink on:click={() => setView(Views.Login)}>Log In</StyledLink>
+      </div>
     </StyledFooter>
   {/if}
 {/if}

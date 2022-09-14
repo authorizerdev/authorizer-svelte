@@ -3,6 +3,7 @@
   export let alignItems = 'center'
   export let justifyContent = 'center'
   export let wrap = 'wrap'
+  export let width = 'inherit'
 </script>
 
 <div
@@ -10,7 +11,8 @@
   style="flex-direction: {flexDirection};
   align-items: {alignItems};
   justify-content: {justifyContent};
-  flex-wrap: {wrap};"
+  flex-wrap: {wrap};
+  width: {width};"
 >
   <slot />
 </div>

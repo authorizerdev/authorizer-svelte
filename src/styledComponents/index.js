@@ -7,6 +7,7 @@ import StyledMessageWrapper from './StyledMessageWrapper.svelte'
 import StyledFlex from './StyledFlex.svelte'
 import StyledFormGroup from './StyledFormGroup.svelte'
 import StyledCheckbox from './StyledCheckbox.svelte'
+import StyledPasswordStrength from './StyledPasswordStrength.svelte'
 import StyledPasswordStrengthWrapper from './StyledPasswordStrengthWrapper.svelte'
 
 export {
@@ -19,5 +20,6 @@ export {
   StyledFlex,
   StyledFormGroup,
   StyledCheckbox,
+  StyledPasswordStrength,
   StyledPasswordStrengthWrapper
 }
