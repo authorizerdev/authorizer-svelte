@@ -64,7 +64,7 @@
         onReset(res)
       } else {
         window.location.href =
-          redirect_uri || config.redirectURL.value || window.location.origin
+          redirect_uri || state.config.redirectURL || window.location.origin
       }
     } catch (error) {
       componentState.loading = false

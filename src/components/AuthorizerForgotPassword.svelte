@@ -41,7 +41,7 @@
         state: urlProps.state || '',
         redirect_uri:
           urlProps.redirect_uri ||
-          config.redirectURL.value ||
+          state.config.redirectURL ||
           window.location.origin
       })
       componentState.loading = false

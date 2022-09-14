@@ -74,7 +74,7 @@
             refresh_token: res.refresh_token,
             id_token: res.id_token
           },
-          config: globalConfig,
+          config: state.config,
           loading: false
         })
       }
