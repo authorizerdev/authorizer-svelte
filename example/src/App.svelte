@@ -35,7 +35,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     width: 400px;
     margin: 10px auto;
     border: 1px solid #d1d5db;
