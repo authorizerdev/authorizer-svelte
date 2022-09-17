@@ -8,9 +8,8 @@
     state = data
   })
 
-  const logoutHandler = () => {
-    state.authorizerRef.logout()
-    window.location.replace('/')
+  const logoutHandler = async () => {
+    await state.logout()
   }
 </script>
 
