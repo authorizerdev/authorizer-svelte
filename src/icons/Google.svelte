@@ -1,4 +1,4 @@
-<div style="position: absolute; left: 10px; display: flex;">
+<div style="position: absolute; left: 10px; top: 12px; display: flex;">
   <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px">
     <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
       <path

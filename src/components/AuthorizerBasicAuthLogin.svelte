@@ -139,7 +139,8 @@
       <br />
       <StyledButton
         appearance={ButtonAppearance.Primary}
-        disabled={errorData.email ||
+        disabled={componentState.loading ||
+          errorData.email ||
           errorData.password ||
           !formData.email ||
           !formData.password}
