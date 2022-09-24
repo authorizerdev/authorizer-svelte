@@ -2,7 +2,7 @@
 
 Svelte SDK for [authorizer.dev](https://authorizer.dev) integration in your [svelte-js](https://svelte.dev/) application. This will allow you to have authentication and authorization ready in minutes.
 
-For detailed information about all the components check [docs]()
+For detailed information about all the components check [docs](https://docs.authorizer.dev/authorizer-svelte)
 
 
 ## Getting Started
@@ -18,9 +18,9 @@ Get Authorizer URL by instantiating [Authorizer instance](/deployment) and confi
 Assuming you have svelte-js application up and running, install following package in your application
 
 ```sh
-npm i --save @authorizerdev/authorizer-react
+npm i --save @authorizerdev/authorizer-svelte
 OR
-yarn add @authorizerdev/authorizer-react
+yarn add @authorizerdev/authorizer-svelte
 ```
 
 ### Step 3 - Configure Provider and use Authorizer Component
@@ -29,7 +29,7 @@ Authorizer comes with global context `authorizerContext` which is available once
 
 Configure `AuthorizerProvider` at root level in your application and import `default.css`.
 
-> Note: You can override default style with `css` variables. Check [docs]() for more details.
+> Note: You can override default style with `css` variables. Check [docs](https://docs.authorizer.dev/authorizer-svelte) for more details.
 
 `eg: routes/+layout.svelte`
 
