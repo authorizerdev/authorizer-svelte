@@ -96,3 +96,7 @@ Configure `AuthorizerProvider` at root level in your application and import `def
 {/if}
 
 ```
+
+## Support our work
+
+Github Sponsorship: https://github.com/sponsors/authorizerdev
