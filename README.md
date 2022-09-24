@@ -41,7 +41,7 @@ Configure `AuthorizerProvider` at root level in your application and import `def
 
 <AuthorizerProvider
     config={{
-        authorizerURL: 'YOUR_AUTHORIZER_INSTANCE_URL`
+        authorizerURL: `YOUR_AUTHORIZER_INSTANCE_URL`
         redirectURL: typeof window != 'undefined' ? window.location.origin : ``
         clientID: 'YOUR_CLIENT_ID'
     }}
