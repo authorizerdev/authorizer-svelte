@@ -23,7 +23,7 @@ export enum AuthorizerProviderActionType {
 }
 
 // TODO use based on theme primary color
-export const passwordStrengthIndicatorOpacity = {
+export const passwordStrengthIndicatorOpacity: Record<string, number> = {
 	default: 0.15,
 	weak: 0.4,
 	good: 0.6,

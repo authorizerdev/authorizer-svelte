@@ -1,10 +1,10 @@
 <script type="ts">
 	import { ButtonAppearance } from '../constants';
 
-	export let style = {
+	export let style: Record<string, string> = {
 		width: '100%'
 	};
-	export let appearance: any = ButtonAppearance.Default;
+	export let appearance: ButtonAppearance = ButtonAppearance.Default;
 	export let disabled: boolean = false;
 </script>
 
