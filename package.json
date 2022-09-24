@@ -1,6 +1,8 @@
 {
-	"name": "authorizer-svelte",
-	"version": "0.0.1",
+	"name": "@authorizerdev/authorizer-svelte",
+	"version": "0.0.1-beta5",
+	"license": "MIT",
+	"author": "Lakhan Samani",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "svelte-kit sync && svelte-package",
@@ -29,5 +31,8 @@
 		"typescript": "^4.7.4",
 		"vite": "^3.1.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@authorizerdev/authorizer-js": "^1.1.0"
+	}
 }
