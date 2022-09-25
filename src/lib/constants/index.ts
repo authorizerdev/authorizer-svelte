@@ -1,32 +1,32 @@
-export const AuthorizerProviderActionType = {
-	SET_USER: 'SET_USER',
-	SET_TOKEN: 'SET_TOKEN',
-	SET_LOADING: 'SET_LOADING',
-	SET_AUTH_DATA: 'SET_AUTH_DATA',
-	SET_CONFIG: 'SET_CONFIG',
-};
+export enum Views {
+	Login,
+	Signup,
+	ForgotPassword
+}
 
-export const Views = {
-	Login: 'Login',
-	Signup: 'Signup',
-	ForgotPassword: 'ForgotPassword',
-};
+export enum ButtonAppearance {
+	Primary,
+	Default
+}
 
-export const ButtonAppearance = {
-	Primary: 'Primary',
-	Default: 'Default',
-};
+export enum MessageType {
+	Error,
+	Success
+}
 
-export const MessageType = {
-	Error: 'Error',
-	Success: 'Success',
-};
+export enum AuthorizerProviderActionType {
+	SET_USER = 'SET_USER',
+	SET_TOKEN = 'SET_TOKEN',
+	SET_LOADING = 'SET_LOADING',
+	SET_AUTH_DATA = 'SET_AUTH_DATA',
+	SET_CONFIG = 'SET_CONFIG'
+}
 
 // TODO use based on theme primary color
-export const passwordStrengthIndicatorOpacity = {
+export const passwordStrengthIndicatorOpacity: Record<string, number> = {
 	default: 0.15,
 	weak: 0.4,
 	good: 0.6,
 	strong: 0.8,
-	veryStrong: 1,
+	veryStrong: 1
 };
