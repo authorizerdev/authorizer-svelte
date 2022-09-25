@@ -9,7 +9,17 @@
 	export let value: string;
 	export let setDisableButton: Function;
 
-	let componentState: Record<string, any> = {
+	let componentState: {
+		strength: string;
+		score: number;
+		hasSixChar: boolean;
+		hasLowerCase: boolean;
+		hasNumericChar: boolean;
+		hasSpecialChar: boolean;
+		hasUpperCase: boolean;
+		maxThirtySixChar: boolean;
+		isValid: boolean;
+	} = {
 		strength: '',
 		score: 0,
 		hasSixChar: false,
@@ -17,13 +27,14 @@
 		hasNumericChar: false,
 		hasSpecialChar: false,
 		hasUpperCase: false,
-		maxThirtySixChar: false
+		maxThirtySixChar: false,
+		isValid: false
 	};
 
 	$: {
 		const validationData = validatePassword(value);
 		componentState = validationData;
-		if (Object.values(validationData).some((isValid) => isValid === false)) {
+		if (!validationData.isValid) {
 			setDisableButton(true);
 		} else {
 			setDisableButton(false);
@@ -38,7 +49,9 @@
 			<StyledPasswordStrength strength={componentState.score > 3 ? 'good' : 'default'} />
 			<StyledPasswordStrength strength={componentState.score > 4 ? 'strong' : 'default'} />
 			<StyledPasswordStrength strength={componentState.score > 5 ? 'veryStrong' : 'default'} />
-			<div>{componentState.strength}</div>
+			{#if componentState.score}
+				<div>{componentState.strength}</div>
+			{/if}
 		</StyledFlex>
 		<p>
 			<b>Criteria for a strong password:</b>

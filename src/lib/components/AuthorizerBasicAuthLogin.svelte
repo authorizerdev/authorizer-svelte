@@ -10,18 +10,29 @@
 
 	export let setView: Function | undefined = undefined;
 	export let onLogin: Function | undefined = undefined;
-	export let urlProps: Record<string, any> = {};
+	export let urlProps: { scope: string[] | undefined } = {
+		scope: []
+	};
 
 	let state: AuthorizerState;
-	let componentState: Record<string, any> = {
+	let componentState: {
+		loading: boolean;
+		error: null | string;
+	} = {
 		loading: false,
 		error: null
 	};
-	let formData: Record<string, any> = {
+	let formData: {
+		email: string | null;
+		password: string | null;
+	} = {
 		email: null,
 		password: null
 	};
-	let otpData: Record<string, any> = {
+	let otpData: {
+		isScreenVisible: boolean;
+		email: string | null;
+	} = {
 		isScreenVisible: false,
 		email: null
 	};
@@ -50,7 +61,7 @@
 				email: formData?.email || '',
 				password: formData?.password || ''
 			};
-			if (urlProps.scope) {
+			if (urlProps.scope && urlProps.scope.length) {
 				data.scope = urlProps.scope;
 			}
 			const res = await state.authorizerRef.login(data);
@@ -85,7 +96,7 @@
 	};
 </script>
 
-{#if otpData.isScreenVisible}
+{#if otpData.isScreenVisible && otpData.email}
 	<AuthorizerVerifyOtp {setView} {onLogin} email={otpData.email} />
 {:else}
 	<div>
@@ -129,8 +140,8 @@
 			<StyledButton
 				appearance={ButtonAppearance.Primary}
 				disabled={componentState.loading ||
-					errorData.email ||
-					errorData.password ||
+					Boolean(errorData.email) ||
+					Boolean(errorData.password) ||
 					!formData.email ||
 					!formData.password}
 			>

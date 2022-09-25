@@ -17,13 +17,18 @@
 	export let onForgotPassword: Function | undefined = undefined;
 
 	let state: AuthorizerState;
-	let view = Views.Login;
+	let view: Views = Views.Login;
 
 	store.subscribe((data) => {
 		state = data;
 	});
 
-	let urlProps: any;
+	let urlProps: {
+		state: string;
+		scope: string[] | undefined;
+		redirectURL?: string | null;
+		redirect_uri?: string | null;
+	};
 
 	let searchParams = new URLSearchParams(hasWindow() ? window.location.search : ``);
 

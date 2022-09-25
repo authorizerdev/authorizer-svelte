@@ -10,7 +10,11 @@
 	export let onReset: Function | undefined = undefined;
 
 	let state: AuthorizerState;
-	let componentState: Record<string, any> = {
+	let componentState: {
+		error: string | null;
+		loading: boolean;
+		disableContinueButton: boolean;
+	} = {
 		error: null,
 		loading: false,
 		disableContinueButton: false
@@ -122,8 +126,8 @@
 			appearance={ButtonAppearance.Primary}
 			disabled={!formData.password ||
 				!formData.confirmPassword ||
-				errorData.password ||
-				errorData.confirmPassword ||
+				Boolean(errorData.password) ||
+				Boolean(errorData.confirmPassword) ||
 				componentState.loading ||
 				componentState.disableContinueButton}
 		>

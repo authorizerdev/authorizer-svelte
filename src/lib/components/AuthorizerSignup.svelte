@@ -10,16 +10,28 @@
 
 	export let setView: Function | undefined = undefined;
 	export let onSignup: Function | undefined = undefined;
-	export let urlProps: Record<string, any> = {};
+	export let urlProps: {
+		scope: string[] | undefined;
+		redirect_uri?: string | null;
+	};
 
 	let state: AuthorizerState;
-	let componentState: Record<string, any> = {
+	let componentState: {
+		error: string | null;
+		successMessage: string | null;
+		loading: boolean;
+		disableSignupButton: boolean;
+	} = {
 		error: null,
 		successMessage: null,
 		loading: false,
 		disableSignupButton: false
 	};
-	let formData: Record<string, any> = {
+	let formData: {
+		email: string | null;
+		password: string | null;
+		confirmPassword: string | null;
+	} = {
 		email: null,
 		password: null,
 		confirmPassword: null
@@ -58,9 +70,9 @@
 		try {
 			componentState.loading = true;
 			const data: SignupInput = {
-				email: formData.email,
-				password: formData.password,
-				confirm_password: formData.confirmPassword
+				email: formData.email || '',
+				password: formData.password || '',
+				confirm_password: formData.confirmPassword || ''
 			};
 			if (urlProps.scope) {
 				data.scope = urlProps.scope;
@@ -171,9 +183,9 @@
 			disabled={!formData.email ||
 				!formData.password ||
 				!formData.confirmPassword ||
-				errorData.email ||
-				errorData.password ||
-				errorData.confirmPassword ||
+				Boolean(errorData.email) ||
+				Boolean(errorData.password) ||
+				Boolean(errorData.confirmPassword) ||
 				componentState.loading ||
 				componentState.disableSignupButton}
 		>

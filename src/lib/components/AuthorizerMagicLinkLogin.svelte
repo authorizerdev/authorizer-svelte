@@ -7,10 +7,18 @@
 	import type { AuthorizerState } from '../types';
 
 	export let onMagicLinkLogin: Function | undefined = undefined;
-	export let urlProps: Record<string, any> = {};
+	export let urlProps: {
+		state: string;
+		redirect_uri?: string | null;
+	};
 
 	let state: AuthorizerState;
-	let componentState: Record<string, any> = {
+	let componentState: {
+		error: string | null;
+		successMessage: string | null;
+		loading: boolean;
+		email: string | null;
+	} = {
 		error: null,
 		successMessage: null,
 		loading: false,
@@ -35,7 +43,7 @@
 		try {
 			componentState.loading = true;
 			const res = await state.authorizerRef.magicLinkLogin({
-				email: componentState.email,
+				email: componentState.email || '',
 				state: urlProps.state || '',
 				redirect_uri: urlProps.redirect_uri || ''
 			});
@@ -49,7 +57,7 @@
 			}
 			if (urlProps.redirect_uri) {
 				setTimeout(() => {
-					window.location.replace(urlProps.redirect_uri);
+					window.location.replace(urlProps.redirect_uri || '');
 				}, 3000);
 			}
 		} catch (error: any) {
@@ -85,7 +93,7 @@
 		<br />
 		<StyledButton
 			appearance={ButtonAppearance.Primary}
-			disabled={!componentState.email || emailError || componentState.loading}
+			disabled={!componentState.email || Boolean(emailError) || componentState.loading}
 		>
 			{#if componentState.loading}
 				Processing ...
