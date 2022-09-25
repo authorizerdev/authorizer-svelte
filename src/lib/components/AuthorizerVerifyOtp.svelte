@@ -12,7 +12,13 @@
 
 	let state: AuthorizerState;
 	let otpError: null | string = null;
-	let componentState: Record<string, any> = {
+	let componentState: {
+		error: string | null;
+		successMessage: string | null;
+		loading: boolean;
+		sendingOtp: boolean;
+		otp: string | null;
+	} = {
 		error: null,
 		successMessage: null,
 		loading: false,
@@ -39,7 +45,7 @@
 			componentState.loading = true;
 			const res = await state.authorizerRef.verifyOtp({
 				email,
-				otp: componentState.otp
+				otp: componentState.otp || ''
 			});
 			componentState.loading = false;
 			if (res) {

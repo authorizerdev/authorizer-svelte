@@ -7,7 +7,10 @@
 	import type { AuthorizerState } from '../types';
 
 	export let onMagicLinkLogin: Function | undefined = undefined;
-	export let urlProps: Record<string, string> = {};
+	export let urlProps: {
+		state: string;
+		redirect_uri?: string | null;
+	};
 
 	let state: AuthorizerState;
 	let componentState: {
@@ -54,7 +57,7 @@
 			}
 			if (urlProps.redirect_uri) {
 				setTimeout(() => {
-					window.location.replace(urlProps.redirect_uri);
+					window.location.replace(urlProps.redirect_uri || '');
 				}, 3000);
 			}
 		} catch (error: any) {

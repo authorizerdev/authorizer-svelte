@@ -8,7 +8,10 @@
 
 	export let setView: Function | undefined = undefined;
 	export let onForgotPassword: Function | undefined = undefined;
-	export let urlProps: Record<string, string> = {};
+	export let urlProps: {
+		state: string;
+		redirect_uri?: string | null;
+	};
 
 	let state: AuthorizerState;
 	let componentState: {

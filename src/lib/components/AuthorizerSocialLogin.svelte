@@ -5,7 +5,7 @@
 	import { createQueryParams } from '../utils/common';
 	import type { AuthorizerState } from '../types';
 
-	export let urlProps: Record<string, any> = {
+	export let urlProps: { scope: string[] | undefined } = {
 		scope: []
 	};
 
@@ -24,7 +24,7 @@
 		state.config.is_twitter_login_enabled;
 	$: queryParams = createQueryParams({
 		...urlProps,
-		scope: urlProps.scope.join(' ')
+		scope: urlProps.scope?.length ? urlProps.scope.join(' ') : ''
 	});
 </script>
 
