@@ -4,7 +4,6 @@ Svelte SDK for [authorizer.dev](https://authorizer.dev) integration in your [sve
 
 For detailed information about all the components check [docs](https://docs.authorizer.dev/authorizer-svelte)
 
-
 ## Getting Started
 
 Here is a quick guide on getting started with `@authorizerdev/authorizer-svelte` package.
@@ -48,14 +47,13 @@ Configure `AuthorizerProvider` at root level in your application and import `def
 >
     <slot />
 </AuthorizerProvider>
-````
+```
 
 **Use `Authorizer` Component**
 
 `eg: routes/+page.svelte`
 
 ```svelte
-
 <script>
 	import { getContext } from 'svelte';
 	import { Authorizer } from '../lib';
@@ -94,7 +92,6 @@ Configure `AuthorizerProvider` at root level in your application and import `def
 		<Authorizer />
 	</div>
 {/if}
-
 ```
 
 ## Support our work

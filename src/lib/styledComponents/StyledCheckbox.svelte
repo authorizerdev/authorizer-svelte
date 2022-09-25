@@ -1,9 +1,9 @@
 <div class="styled-checkbox">
-  <slot />
+	<slot />
 </div>
 
 <style>
-  .styled-checkbox {
-    margin-left: 5px;
-  }
+	.styled-checkbox {
+		margin-left: 5px;
+	}
 </style>

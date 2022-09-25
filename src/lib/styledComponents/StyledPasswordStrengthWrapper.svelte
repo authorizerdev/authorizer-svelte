@@ -1,9 +1,9 @@
 <div class="styled-password-strength-wrapper">
-  <slot />
+	<slot />
 </div>
 
 <style>
-  .styled-password-strength-wrapper {
-    margin: 2% 0 0;
-  }
+	.styled-password-strength-wrapper {
+		margin: 2% 0 0;
+	}
 </style>
