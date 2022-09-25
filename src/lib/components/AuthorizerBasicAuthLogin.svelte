@@ -10,7 +10,7 @@
 
 	export let setView: Function | undefined = undefined;
 	export let onLogin: Function | undefined = undefined;
-	export let urlProps: {scope: string[] | undefined } = {
+	export let urlProps: { scope: string[] | undefined } = {
 		scope: []
 	};
 
@@ -23,15 +23,15 @@
 		error: null
 	};
 	let formData: {
-		email: string | null,
-		password: string | null,
+		email: string | null;
+		password: string | null;
 	} = {
 		email: null,
 		password: null
 	};
 	let otpData: {
-		isScreenVisible: boolean,
-		email: string | null
+		isScreenVisible: boolean;
+		email: string | null;
 	} = {
 		isScreenVisible: false,
 		email: null
