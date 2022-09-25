@@ -8,10 +8,15 @@
 
 	export let setView: Function | undefined = undefined;
 	export let onForgotPassword: Function | undefined = undefined;
-	export let urlProps: Record<string, any> = {};
+	export let urlProps: Record<string, string> = {};
 
 	let state: AuthorizerState;
-	let componentState: Record<string, any> = {
+	let componentState: {
+		error: string | null;
+		successMessage: string | null;
+		loading: boolean;
+		email: string | null;
+	} = {
 		error: null,
 		successMessage: null,
 		loading: false,
@@ -33,7 +38,7 @@
 		try {
 			componentState.loading = true;
 			const res = await state.authorizerRef.forgotPassword({
-				email: componentState.email,
+				email: componentState.email || '',
 				state: urlProps.state || '',
 				redirect_uri: urlProps.redirect_uri || state.config.redirectURL || window.location.origin
 			});
@@ -56,11 +61,7 @@
 </script>
 
 {#if componentState.successMessage}
-	<Message
-		type={MessageType.Success}
-		text={componentState.successMessage}
-		onClose={{ undefined }}
-	/>
+	<Message type={MessageType.Success} text={componentState.successMessage} />
 {:else}
 	{#if componentState.error}
 		<Message type={MessageType.Error} text={componentState.error} onClose={onErrorClose} />
@@ -91,7 +92,7 @@
 		<br />
 		<StyledButton
 			appearance={ButtonAppearance.Primary}
-			disabled={!componentState.email || emailError || componentState.loading}
+			disabled={!componentState.email || Boolean(emailError) || componentState.loading}
 		>
 			{#if componentState.loading}
 				Processing ...
