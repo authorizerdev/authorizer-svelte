@@ -61,7 +61,7 @@
 				email: formData?.email || '',
 				password: formData?.password || ''
 			};
-			if (urlProps.scope) {
+			if (urlProps.scope && urlProps.scope.length) {
 				data.scope = urlProps.scope;
 			}
 			const res = await state.authorizerRef.login(data);
