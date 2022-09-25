@@ -9,10 +9,10 @@
 <div
 	class="styled-flex"
 	style="flex-direction: {flexDirection};
-  align-items: {alignItems};
-  justify-content: {justifyContent};
-  flex-wrap: {wrap};
-  width: {width};"
+	align-items: {alignItems};
+	justify-content: {justifyContent};
+	flex-wrap: {wrap};
+	width: {width};"
 >
 	<slot />
 </div>
