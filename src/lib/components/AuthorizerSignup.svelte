@@ -5,7 +5,7 @@
 	import { Views, MessageType, ButtonAppearance } from '../constants';
 	import { isValidEmail } from '../utils/common';
 	import Message from './Message.svelte';
-	import PassowrdStrengthIndicator from './PassowrdStrengthIndicator.svelte';
+	import PasswordStrengthIndicator from './PasswordStrengthIndicator.svelte';
 	import type { AuthorizerState } from '../types';
 
 	export let setView: Function | undefined = undefined;
@@ -175,7 +175,7 @@
 			</div>
 		</StyledFormGroup>
 		{#if state.config.is_strong_password_enabled}
-			<PassowrdStrengthIndicator value={formData.password || ''} {setDisableButton} />
+			<PasswordStrengthIndicator value={formData.password || ''} {setDisableButton} />
 			<br />
 		{/if}
 		<StyledButton
