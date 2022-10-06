@@ -4,7 +4,7 @@
 	import { MessageType, ButtonAppearance } from '../constants';
 	import Message from './/Message.svelte';
 	import { getSearchParams } from '../utils/url';
-	import PassowrdStrengthIndicator from './PassowrdStrengthIndicator.svelte';
+	import PasswordStrengthIndicator from './PasswordStrengthIndicator.svelte';
 	import type { AuthorizerState } from '../types';
 
 	export let onReset: Function | undefined = undefined;
@@ -119,7 +119,7 @@
 			</div>
 		</StyledFormGroup>
 		{#if state.config.is_strong_password_enabled}
-			<PassowrdStrengthIndicator value={formData.password || ''} {setDisableButton} />
+			<PasswordStrengthIndicator value={formData.password || ''} {setDisableButton} />
 			<br />
 		{/if}
 		<StyledButton
