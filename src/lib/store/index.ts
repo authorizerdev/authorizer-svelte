@@ -2,8 +2,9 @@
 import { writable } from 'svelte/store';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 import { hasWindow } from '../utils/window';
+import type { AuthorizerState } from '$lib/types';
 
-export const store = writable({
+export const store = writable<AuthorizerState>({
 	config: {
 		authorizerURL: '',
 		redirectURL: '/',
@@ -23,14 +24,14 @@ export const store = writable({
 	user: null,
 	token: null,
 	loading: false,
-	setLoading: () => {},
-	setToken: () => {},
-	setUser: () => {},
-	setAuthData: () => {},
+	setLoading: () => { },
+	setToken: () => { },
+	setUser: () => { },
+	setAuthData: () => { },
 	authorizerRef: new Authorizer({
 		authorizerURL: `http://localhost:8080`,
 		redirectURL: hasWindow() ? window.location.origin : '/',
 		clientID: ''
 	}),
-	logout: async () => {}
+	logout: async () => { },
 });
