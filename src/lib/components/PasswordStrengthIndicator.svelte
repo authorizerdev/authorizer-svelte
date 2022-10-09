@@ -58,27 +58,63 @@
 		</p>
 		<StyledFlex flexDirection="column">
 			<StyledFlex justifyContent="flex-start" alignItems="center" width="100%">
-				<input readOnly type="checkbox" checked={componentState.hasSixChar} />
+				<input
+					readOnly
+					on:click|preventDefault
+					on:keydown|preventDefault
+					type="checkbox"
+					checked={componentState.hasSixChar}
+				/>
 				<div style="margin-left: 5px;">At least 6 characters</div>
 			</StyledFlex>
 			<StyledFlex justifyContent="flex-start" alignItems="center" width="100%">
-				<input readOnly type="checkbox" checked={componentState.hasLowerCase} />
+				<input
+					readOnly
+					on:click|preventDefault
+					on:keydown|preventDefault
+					type="checkbox"
+					checked={componentState.hasLowerCase}
+				/>
 				<div style="margin-left: 5px;">At least 1 lowercase letter</div>
 			</StyledFlex>
 			<StyledFlex justifyContent="flex-start" alignItems="center" width="100%">
-				<input readOnly type="checkbox" checked={componentState.hasUpperCase} />
+				<input
+					readOnly
+					on:click|preventDefault
+					on:keydown|preventDefault
+					type="checkbox"
+					checked={componentState.hasUpperCase}
+				/>
 				<div style="margin-left: 5px;">At least 1 uppercase letter</div>
 			</StyledFlex>
 			<StyledFlex justifyContent="flex-start" alignItems="center" width="100%">
-				<input readOnly type="checkbox" checked={componentState.hasNumericChar} />
+				<input
+					readOnly
+					on:click|preventDefault
+					on:keydown|preventDefault
+					type="checkbox"
+					checked={componentState.hasNumericChar}
+				/>
 				<div style="margin-left: 5px;">At least 1 numeric character</div>
 			</StyledFlex>
 			<StyledFlex justifyContent="flex-start" alignItems="center" width="100%">
-				<input readOnly type="checkbox" checked={componentState.hasSpecialChar} />
+				<input
+					readOnly
+					on:click|preventDefault
+					on:keydown|preventDefault
+					type="checkbox"
+					checked={componentState.hasSpecialChar}
+				/>
 				<div style="margin-left: 5px;">At least 1 special character</div>
 			</StyledFlex>
 			<StyledFlex justifyContent="flex-start" alignItems="center" width="100%">
-				<input readOnly type="checkbox" checked={componentState.maxThirtySixChar} />
+				<input
+					readOnly
+					on:click|preventDefault
+					on:keydown|preventDefault
+					type="checkbox"
+					checked={componentState.maxThirtySixChar}
+				/>
 				<div style="margin-left: 5px;">Maximum 36 characters</div>
 			</StyledFlex>
 		</StyledFlex>
