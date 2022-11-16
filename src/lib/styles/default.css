@@ -15,19 +15,3 @@
 	--authorizer-radius-button: 5px;
 	--authorizer-radius-input: 5px;
 }
-
-fieldset {
-	border: 1pt solid gray;
-	padding: 1em;
-	margin: 1em;
-	background-color: #fafafa;
-}
-
-legend {
-	color: #eee;
-	font-family: --authorizer-fonts-font-stack;
-	background-color: #aaa;
-	padding: 0.5em;
-	vertical-align: middle;
-	display: inline-block;
-}
