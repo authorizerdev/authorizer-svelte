@@ -10,9 +10,10 @@
 
 	export let setView: Function | undefined = undefined;
 	export let onSignup: Function | undefined = undefined;
-	export let urlProps: {
-		scope: string[] | undefined;
-		redirect_uri?: string | null;
+	export let urlProps: Record<string, any> = {
+		scope: [],
+		redirect_uri: undefined,
+		state: undefined
 	};
 
 	let state: AuthorizerState;
@@ -79,6 +80,9 @@
 			}
 			if (urlProps.redirect_uri) {
 				data.redirect_uri = urlProps.redirect_uri;
+			}
+			if (urlProps.state) {
+				data.state = urlProps.state;
 			}
 			const res = await state.authorizerRef.signup(data);
 			if (res) {
