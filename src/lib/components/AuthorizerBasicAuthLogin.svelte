@@ -10,8 +10,9 @@
 
 	export let setView: Function | undefined = undefined;
 	export let onLogin: Function | undefined = undefined;
-	export let urlProps: { scope: string[] | undefined } = {
-		scope: []
+	export let urlProps: Record<string, any> = {
+		scope: [],
+		state: undefined
 	};
 
 	let state: AuthorizerState;
@@ -64,6 +65,9 @@
 			if (urlProps.scope && urlProps.scope.length) {
 				data.scope = urlProps.scope;
 			}
+			if (urlProps.state) {
+				data.state = urlProps.state;
+			}
 			const res = await state.authorizerRef.login(data);
 			if (res && res?.should_show_otp_screen) {
 				otpData = {
@@ -97,7 +101,7 @@
 </script>
 
 {#if otpData.isScreenVisible && otpData.email}
-	<AuthorizerVerifyOtp {setView} {onLogin} email={otpData.email} />
+	<AuthorizerVerifyOtp {setView} {onLogin} {urlProps} email={otpData.email} />
 {:else}
 	<div>
 		{#if componentState.error}

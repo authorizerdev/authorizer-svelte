@@ -5,10 +5,14 @@
 	import { ButtonAppearance, Views, MessageType } from '../constants';
 	import Message from './Message.svelte';
 	import type { AuthorizerState } from '../types';
+	import type { VerifyOtpInput } from '@authorizerdev/authorizer-js';
 
 	export let setView: Function | undefined = undefined;
 	export let onLogin: Function | undefined = undefined;
 	export let email: string;
+	export let urlProps: Record<string, any> = {
+		state: undefined
+	};
 
 	let state: AuthorizerState;
 	let otpError: null | string = null;
@@ -41,12 +45,16 @@
 
 	const onSubmit = async () => {
 		componentState.successMessage = null;
+		const data: VerifyOtpInput = {
+			email,
+			otp: componentState.otp || ''
+		};
+		if (urlProps.state) {
+			data.state = urlProps.state;
+		}
 		try {
 			componentState.loading = true;
-			const res = await state.authorizerRef.verifyOtp({
-				email,
-				otp: componentState.otp || ''
-			});
+			const res = await state.authorizerRef.verifyOtp(data);
 			componentState.loading = false;
 			if (res) {
 				componentState.error = null;
