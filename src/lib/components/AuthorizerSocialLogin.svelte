@@ -8,12 +8,25 @@
 	export let urlProps: { scope: string[] | undefined } = {
 		scope: []
 	};
+	export let roles: string[] | undefined = undefined;
 
 	let state: AuthorizerState;
 
 	store.subscribe((data) => {
 		state = data;
 	});
+
+	const data: {
+		scope?: string;
+		roles?: string;
+	} = {
+		...urlProps,
+		scope: urlProps.scope?.length ? urlProps.scope.join(' ') : ''
+	};
+
+	if (roles && roles.length) {
+		data.roles = roles.join(',');
+	}
 
 	$: hasSocialLogin =
 		state.config.is_google_login_enabled ||
@@ -22,10 +35,7 @@
 		state.config.is_linkedin_login_enabled ||
 		state.config.is_apple_login_enabled ||
 		state.config.is_twitter_login_enabled;
-	$: queryParams = createQueryParams({
-		...urlProps,
-		scope: urlProps.scope?.length ? urlProps.scope.join(' ') : ''
-	});
+	$: queryParams = createQueryParams(data);
 </script>
 
 <div>

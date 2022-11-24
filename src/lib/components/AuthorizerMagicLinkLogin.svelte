@@ -5,12 +5,14 @@
 	import { isValidEmail } from '../utils/common';
 	import Message from './Message.svelte';
 	import type { AuthorizerState } from '../types';
+	import type { MagicLinkLoginInput } from '@authorizerdev/authorizer-js';
 
 	export let onMagicLinkLogin: Function | undefined = undefined;
 	export let urlProps: {
 		state: string;
 		redirect_uri?: string | null;
 	};
+	export let roles: string[] | undefined = undefined;
 
 	let state: AuthorizerState;
 	let componentState: {
@@ -42,11 +44,18 @@
 	const onSubmit = async () => {
 		try {
 			componentState.loading = true;
-			const res = await state.authorizerRef.magicLinkLogin({
+
+			const data: MagicLinkLoginInput = {
 				email: componentState.email || '',
 				state: urlProps.state || '',
 				redirect_uri: urlProps.redirect_uri || ''
-			});
+			};
+
+			if (roles && roles.length) {
+				data.roles = roles;
+			}
+
+			const res = await state.authorizerRef.magicLinkLogin(data);
 			componentState.loading = false;
 			if (res) {
 				componentState.error = null;

@@ -15,6 +15,7 @@
 	export let onSignup: Function | undefined = undefined;
 	export let onMagicLinkLogin: Function | undefined = undefined;
 	export let onForgotPassword: Function | undefined = undefined;
+	export let roles: string[] | undefined = undefined;
 
 	let state: AuthorizerState;
 	let view: Views = Views.Login;
@@ -56,15 +57,15 @@
 </script>
 
 <StyledWrapper>
-	<AuthorizerSocialLogin {urlProps} />
+	<AuthorizerSocialLogin {urlProps} {roles} />
 	{#if view === Views.Login && state.config.is_basic_authentication_enabled && !state.config.is_magic_link_login_enabled}
-		<AuthorizerBasicAuthLogin {setView} {onLogin} {urlProps} />
+		<AuthorizerBasicAuthLogin {setView} {onLogin} {urlProps} {roles} />
 	{/if}
 	{#if view === Views.Signup && state.config.is_basic_authentication_enabled && !state.config.is_magic_link_login_enabled && state.config.is_sign_up_enabled}
-		<AuthorizerSignup {setView} {onSignup} {urlProps} />
+		<AuthorizerSignup {setView} {onSignup} {urlProps} {roles} />
 	{/if}
 	{#if view === Views.Login && state.config.is_magic_link_login_enabled}
-		<AuthorizerMagicLinkLogin {onMagicLinkLogin} {urlProps} />
+		<AuthorizerMagicLinkLogin {onMagicLinkLogin} {urlProps} {roles} />
 	{/if}
 	{#if view === Views.ForgotPassword}
 		<AuthorizerForgotPassword {setView} {onForgotPassword} {urlProps} />

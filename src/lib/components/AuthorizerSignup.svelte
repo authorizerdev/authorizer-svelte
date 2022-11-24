@@ -15,6 +15,7 @@
 		redirect_uri: undefined,
 		state: undefined
 	};
+	export let roles: string[] | undefined = undefined;
 
 	let state: AuthorizerState;
 	let componentState: {
@@ -83,6 +84,9 @@
 			}
 			if (urlProps.state) {
 				data.state = urlProps.state;
+			}
+			if (roles && roles.length) {
+				data.roles = roles;
 			}
 			const res = await state.authorizerRef.signup(data);
 			if (res) {
