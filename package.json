@@ -1,6 +1,6 @@
 {
 	"name": "@authorizerdev/authorizer-svelte",
-	"version": "0.1.2",
+	"version": "0.1.4",
 	"license": "MIT",
 	"author": "Lakhan Samani",
 	"scripts": {
