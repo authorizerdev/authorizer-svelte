@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { StyledButton, StyledSeparator } from '../styledComponents';
-	import { Google, Github, Facebook, Linkedin, Apple, Twitter } from '../icons';
+	import { Google, Github, Facebook, Linkedin, Apple, Twitter, Microsoft } from '../icons';
 	import { store } from '../store';
 	import { createQueryParams } from '../utils/common';
 	import type { AuthorizerState } from '../types';
@@ -34,7 +34,8 @@
 		state.config.is_facebook_login_enabled ||
 		state.config.is_linkedin_login_enabled ||
 		state.config.is_apple_login_enabled ||
-		state.config.is_twitter_login_enabled;
+		state.config.is_twitter_login_enabled ||
+		state.config.is_microsoft_login_enabled;
 	$: queryParams = createQueryParams(data);
 </script>
 
@@ -110,6 +111,18 @@
 		>
 			<Twitter />
 			Sign in with Twitter
+		</StyledButton>
+		<br />
+	{/if}
+	{#if state.config.is_microsoft_login_enabled}
+		<StyledButton
+			on:click={() => {
+				if (window?.location)
+					window.location.href = `${state.config.authorizerURL}/oauth_login/microsoft?${queryParams}`;
+			}}
+		>
+			<Microsoft />
+			Sign in with Microsoft
 		</StyledButton>
 		<br />
 	{/if}
