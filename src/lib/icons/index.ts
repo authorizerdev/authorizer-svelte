@@ -5,5 +5,6 @@ import Github from './Github.svelte';
 import Google from './Google.svelte';
 import Linkedin from './Linkedin.svelte';
 import Twitter from './Twitter.svelte';
+import Microsoft from './Microsoft.svelte';
 
-export { Apple, Facebook, Github, Google, Linkedin, Twitter, Close };
+export { Apple, Facebook, Github, Google, Linkedin, Twitter, Close, Microsoft };
