@@ -75,13 +75,14 @@
 		We will send you an email to reset your password.
 	</p>
 	<br />
-	<form on:submit|preventDefault={onSubmit}>
+	<form on:submit|preventDefault={onSubmit} name="authorizer-forgot-password-form">
 		<StyledFormGroup hasError={!!emailError}>
-			<label slot="form-input-label" class="form-input-label" for="">
+			<label slot="form-input-label" class="form-input-label" for="authorizer-forgot-password-email">
 				<span> * </span>
 				Email
 			</label>
 			<input
+				id="authorizer-forgot-password-email"
 				slot="form-input-field"
 				class={emailError ? 'form-input-field input-error-content' : 'form-input-field'}
 				placeholder="eg. foo@bar.com"

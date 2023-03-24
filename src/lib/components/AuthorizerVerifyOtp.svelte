@@ -120,13 +120,14 @@
 	Please enter the OTP you received on your email address.
 </p>
 <br />
-<form on:submit|preventDefault={onSubmit}>
+<form on:submit|preventDefault={onSubmit} name="authorizer-mfa-otp-form">
 	<StyledFormGroup hasError={!!otpError}>
-		<label slot="form-input-label" class="form-input-label" for="">
+		<label slot="form-input-label" class="form-input-label" for="authorizer-verify-otp">
 			<span> * </span>
 			OTP (One Time Password)
 		</label>
 		<input
+			id="authorizer-verify-otp"
 			slot="form-input-field"
 			class={otpError ? 'form-input-field input-error-content' : 'form-input-field'}
 			placeholder="eg. AB123C"

@@ -82,13 +82,14 @@
 	{#if componentState.error}
 		<Message type={MessageType.Error} text={componentState.error} onClose={onErrorClose} />
 	{/if}
-	<form on:submit|preventDefault={onSubmit}>
+	<form on:submit|preventDefault={onSubmit} name="authorizer-magic-login-form">
 		<StyledFormGroup hasError={!!emailError}>
-			<label slot="form-input-label" class="form-input-label" for="">
+			<label slot="form-input-label" class="form-input-label" for="authorizer-magic-link-login-email">
 				<span> * </span>
 				Email
 			</label>
 			<input
+				id="authorizer-magic-link-login-email"
 				slot="form-input-field"
 				class={emailError ? 'form-input-field input-error-content' : 'form-input-field'}
 				placeholder="eg. foo@bar.com"

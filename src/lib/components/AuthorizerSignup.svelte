@@ -131,13 +131,14 @@
 	{#if componentState.error}
 		<Message type={MessageType.Error} text={componentState.error} onClose={onErrorClose} />
 	{/if}
-	<form on:submit|preventDefault={onSubmit}>
+	<form on:submit|preventDefault={onSubmit} name="authorizer-signup-form">
 		<StyledFormGroup hasError={!!errorData.email}>
-			<label slot="form-input-label" class="form-input-label" for="">
+			<label slot="form-input-label" class="form-input-label" for="authorizer-sign-up-email">
 				<span> * </span>
 				Email
 			</label>
 			<input
+				id="authorizer-sign-up-email"
 				slot="form-input-field"
 				class={errorData.email ? 'form-input-field input-error-content' : 'form-input-field'}
 				placeholder="eg. foo@bar.com"
@@ -149,11 +150,12 @@
 			</div>
 		</StyledFormGroup>
 		<StyledFormGroup hasError={!!errorData.password}>
-			<label slot="form-input-label" class="form-input-label" for="">
+			<label slot="form-input-label" class="form-input-label" for="authorizer-sign-up-password">
 				<span> * </span>
 				Password
 			</label>
 			<input
+				id="authorizer-sign-up-password"
 				slot="form-input-field"
 				class={errorData.password ? 'form-input-field input-error-content' : 'form-input-field'}
 				placeholder="********"
@@ -165,11 +167,12 @@
 			</div>
 		</StyledFormGroup>
 		<StyledFormGroup hasError={!!errorData.confirmPassword}>
-			<label slot="form-input-label" class="form-input-label" for="">
+			<label slot="form-input-label" class="form-input-label" for="authorizer-sign-up-confirm-password">
 				<span> * </span>
 				Confirm Password
 			</label>
 			<input
+				id="authorizer-sign-up-confirm-password"
 				slot="form-input-field"
 				class={errorData.confirmPassword
 					? 'form-input-field input-error-content'

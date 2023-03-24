@@ -83,13 +83,14 @@
 	{#if componentState.error}
 		<Message type={MessageType.Error} text={componentState.error} onClose={onErrorClose} />
 	{/if}
-	<form on:submit|preventDefault={onSubmit}>
+	<form on:submit|preventDefault={onSubmit} name="authorizer-reset-password-form">
 		<StyledFormGroup hasError={!!errorData.password}>
-			<label slot="form-input-label" class="form-input-label" for="">
+			<label slot="form-input-label" class="form-input-label" for="authorizer-reset-password">
 				<span> * </span>
 				Password
 			</label>
 			<input
+				id="authorizer-reset-password"
 				slot="form-input-field"
 				class={errorData.password ? 'form-input-field input-error-content' : 'form-input-field'}
 				placeholder="********"
@@ -101,11 +102,12 @@
 			</div>
 		</StyledFormGroup>
 		<StyledFormGroup hasError={!!errorData.confirmPassword}>
-			<label slot="form-input-label" class="form-input-label" for="">
+			<label slot="form-input-label" class="form-input-label" for="authorizer-reset-confirm-password">
 				<span> * </span>
 				Confirm Password
 			</label>
 			<input
+				id="authorizer-reset-confirm-password"
 				slot="form-input-field"
 				class={errorData.confirmPassword
 					? 'form-input-field input-error-content'
