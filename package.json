@@ -1,6 +1,6 @@
 {
 	"name": "@authorizerdev/authorizer-svelte",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"license": "MIT",
 	"author": "Lakhan Samani",
 	"scripts": {
@@ -33,6 +33,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@authorizerdev/authorizer-js": "^1.1.4"
+		"@authorizerdev/authorizer-js": "^1.2.5"
 	}
 }

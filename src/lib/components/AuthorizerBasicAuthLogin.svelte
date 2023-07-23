@@ -73,7 +73,7 @@
 				data.roles = roles;
 			}
 			const res = await state.authorizerRef.login(data);
-			if (res && res?.should_show_otp_screen) {
+			if (res && res?.should_show_email_otp_screen) {
 				otpData = {
 					isScreenVisible: true,
 					email: data?.email
