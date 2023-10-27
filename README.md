@@ -56,7 +56,7 @@ Configure `AuthorizerProvider` at root level in your application and import `def
 ```svelte
 <script>
 	import { getContext } from 'svelte';
-	import { Authorizer } from '../lib';
+	import { Authorizer } from '@authorizerdev/authorizer-svelte';
 
 	/**
 	 * @type {{ token: string; user: any; loading: boolean; logout: Function; }}
