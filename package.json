@@ -34,8 +34,5 @@
 	"type": "module",
 	"dependencies": {
 		"@authorizerdev/authorizer-js": "^1.2.6"
-	},
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"svelte": "dist/index.js"
+	}
 }
