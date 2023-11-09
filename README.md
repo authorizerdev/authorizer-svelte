@@ -42,7 +42,7 @@ Configure `AuthorizerProvider` at root level in your application and import `def
     config={{
         authorizerURL: `YOUR_AUTHORIZER_INSTANCE_URL`
         redirectURL: typeof window != 'undefined' ? window.location.origin : ``
-        clientID: 'YOUR_CLIENT_ID'
+        client_id: 'YOUR_CLIENT_ID'
     }}
 >
     <slot />
@@ -56,7 +56,7 @@ Configure `AuthorizerProvider` at root level in your application and import `def
 ```svelte
 <script>
 	import { getContext } from 'svelte';
-	import { Authorizer } from '../lib';
+	import { Authorizer } from '@authorizerdev/authorizer-svelte';
 
 	/**
 	 * @type {{ token: string; user: any; loading: boolean; logout: Function; }}
