@@ -33,6 +33,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@authorizerdev/authorizer-js": "^1.2.6"
+		"@authorizerdev/authorizer-js": "^1.2.18"
 	}
 }
