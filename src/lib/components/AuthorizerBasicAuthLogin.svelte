@@ -76,7 +76,7 @@
 			if (res && res?.should_show_email_otp_screen) {
 				otpData = {
 					isScreenVisible: true,
-					email: data?.email
+					email: data?.email ?? null
 				};
 				return;
 			}

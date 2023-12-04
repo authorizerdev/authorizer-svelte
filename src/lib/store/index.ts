@@ -34,5 +34,6 @@ export const store = writable<AuthorizerState>({
 		redirectURL: hasWindow() ? window.location.origin : '/',
 		clientID: ''
 	}),
-	logout: async () => {}
+	logout: async () => {},
+  refreshToken: async () => {},
 });

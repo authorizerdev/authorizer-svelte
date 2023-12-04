@@ -193,7 +193,10 @@
 						type: AuthorizerProviderActionType.SET_AUTH_DATA,
 						payload: loggedOutState
 					});
-				}
+				},
+        refreshToken: async () => {
+          await getToken();
+        }
 			};
 		});
 	}

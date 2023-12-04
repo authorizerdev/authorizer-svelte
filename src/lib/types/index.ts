@@ -37,6 +37,7 @@ export type AuthorizerState = {
 	loading: boolean;
 	config: ConfigState;
 	logout: () => Promise<void>;
+  refreshToken: () => Promise<void>;
 	setLoading: (data: boolean) => void;
 	setUser: (data: null | User) => void;
 	setToken: (data: null | AuthToken) => void;
