@@ -194,9 +194,9 @@
 						payload: loggedOutState
 					});
 				},
-        refreshToken: async () => {
-          await getToken();
-        }
+				refreshToken: async () => {
+					await getToken();
+				}
 			};
 		});
 	}
