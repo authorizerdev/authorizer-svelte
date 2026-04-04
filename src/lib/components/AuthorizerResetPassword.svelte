@@ -7,6 +7,20 @@
 	import PasswordStrengthIndicator from './PasswordStrengthIndicator.svelte';
 	import type { AuthorizerState } from '../types';
 
+	function isValidRedirectUri(uri: string, allowedRedirect?: string): boolean {
+		try {
+			const url = new URL(uri, window.location.origin);
+			if (url.origin === window.location.origin) return true;
+			if (allowedRedirect) {
+				const allowed = new URL(allowedRedirect);
+				if (url.origin === allowed.origin) return true;
+			}
+			return false;
+		} catch {
+			return false;
+		}
+	}
+
 	export let onReset: Function | undefined = undefined;
 
 	let state: AuthorizerState;
@@ -54,17 +68,25 @@
 	const onSubmit = async () => {
 		componentState.loading = true;
 		try {
-			const res = await state.authorizerRef.resetPassword({
+			const { data: res, errors } = await state.authorizerRef.resetPassword({
 				token,
 				password: formData.password,
 				confirm_password: formData.confirmPassword
 			});
 			componentState.loading = false;
+			if (errors && errors.length) {
+				componentState.error = errors[0].message;
+				return;
+			}
 			componentState.error = null;
 			if (onReset) {
 				onReset(res);
 			} else {
-				window.location.href = redirect_uri || state.config.redirectURL || window.location.origin;
+					const fallback = state.config.redirectURL || window.location.origin;
+				const target = redirect_uri && isValidRedirectUri(redirect_uri, state.config.redirectURL)
+					? redirect_uri
+					: fallback;
+				window.location.href = target;
 			}
 		} catch (error: any) {
 			componentState.loading = false;
