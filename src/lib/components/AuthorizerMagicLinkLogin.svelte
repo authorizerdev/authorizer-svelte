@@ -5,7 +5,7 @@
 	import { isValidEmail } from '../utils/common';
 	import Message from './Message.svelte';
 	import type { AuthorizerState } from '../types';
-	import type { MagicLinkLoginInput } from '@authorizerdev/authorizer-js';
+	import type { MagicLinkLoginRequest } from '@authorizerdev/authorizer-js';
 
 	export let onMagicLinkLogin: Function | undefined = undefined;
 	export let urlProps: {
@@ -45,7 +45,7 @@
 		try {
 			componentState.loading = true;
 
-			const data: MagicLinkLoginInput = {
+			const data: MagicLinkLoginRequest = {
 				email: componentState.email || '',
 				state: urlProps.state || '',
 				redirect_uri: urlProps.redirect_uri || ''
@@ -55,11 +55,15 @@
 				data.roles = roles;
 			}
 
-			const res = await state.authorizerRef.magicLinkLogin(data);
+			const { data: res, errors } = await state.authorizerRef.magicLinkLogin(data);
 			componentState.loading = false;
+			if (errors && errors.length) {
+				componentState.error = errors[0]?.message || '';
+				return;
+			}
 			if (res) {
 				componentState.error = null;
-				componentState.successMessage = res.message || ``;
+				componentState.successMessage = res?.message || ``;
 				if (onMagicLinkLogin) {
 					onMagicLinkLogin(res);
 				}

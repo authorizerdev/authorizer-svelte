@@ -17,6 +17,11 @@ export type ConfigState = {
 	is_magic_link_login_enabled?: boolean;
 	is_sign_up_enabled?: boolean;
 	is_strong_password_enabled?: boolean;
+	is_twitch_login_enabled?: boolean;
+	is_discord_login_enabled?: boolean;
+	is_multi_factor_auth_enabled?: boolean;
+	is_mobile_basic_authentication_enabled?: boolean;
+	is_phone_verification_enabled?: boolean;
 };
 
 export type AuthorizerProviderAction = {

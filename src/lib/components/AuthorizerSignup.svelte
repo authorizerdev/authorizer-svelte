@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SignupInput } from '@authorizerdev/authorizer-js';
+	import type { SignupRequest } from '@authorizerdev/authorizer-js';
 	import { StyledButton, StyledFormGroup, StyledFooter, StyledLink } from '../styledComponents';
 	import { store } from '../store';
 	import { Views, MessageType, ButtonAppearance } from '../constants';
@@ -71,7 +71,7 @@
 	const onSubmit = async () => {
 		try {
 			componentState.loading = true;
-			const data: SignupInput = {
+			const data: SignupRequest = {
 				email: formData.email || '',
 				password: formData.password || '',
 				confirm_password: formData.confirmPassword || ''
@@ -88,19 +88,19 @@
 			if (roles && roles.length) {
 				data.roles = roles;
 			}
-			const res = await state.authorizerRef.signup(data);
+			const { data: res, errors } = await state.authorizerRef.signup(data);
+			if (errors && errors.length) {
+				componentState.loading = false;
+				componentState.error = errors[0]?.message || '';
+				return;
+			}
 			if (res) {
 				componentState.error = null;
 				if (res.access_token) {
 					componentState.error = null;
 					state.setAuthData({
 						user: res.user || null,
-						token: {
-							access_token: res.access_token,
-							expires_in: res.expires_in,
-							refresh_token: res.refresh_token,
-							id_token: res.id_token
-						},
+						token: res,
 						config: state.config,
 						loading: false
 					});

@@ -20,7 +20,12 @@ export const store = writable<AuthorizerState>({
 		is_basic_authentication_enabled: false,
 		is_magic_link_login_enabled: false,
 		is_sign_up_enabled: false,
-		is_strong_password_enabled: true
+		is_strong_password_enabled: true,
+		is_twitch_login_enabled: false,
+		is_discord_login_enabled: false,
+		is_multi_factor_auth_enabled: false,
+		is_mobile_basic_authentication_enabled: false,
+		is_phone_verification_enabled: false
 	},
 	user: null,
 	token: null,

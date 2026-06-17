@@ -6,7 +6,7 @@
 	import { ButtonAppearance, MessageType, Views } from '../constants';
 	import { isValidEmail } from '../utils/common';
 	import type { AuthorizerState } from '../types';
-	import type { LoginInput } from '@authorizerdev/authorizer-js';
+	import type { LoginRequest } from '@authorizerdev/authorizer-js';
 
 	export let setView: Function | undefined = undefined;
 	export let onLogin: Function | undefined = undefined;
@@ -59,7 +59,7 @@
 	const onSubmit = async () => {
 		componentState.loading = true;
 		try {
-			const data: LoginInput = {
+			const data: LoginRequest = {
 				email: formData?.email || '',
 				password: formData?.password || ''
 			};
@@ -72,11 +72,16 @@
 			if (roles && roles.length) {
 				data.roles = roles;
 			}
-			const res = await state.authorizerRef.login(data);
-			if (res && res?.should_show_email_otp_screen) {
+			const { data: res, errors } = await state.authorizerRef.login(data);
+			if (errors && errors.length) {
+				componentState.loading = false;
+				componentState.error = errors[0]?.message || 'Internal error!';
+				return;
+			}
+			if (res?.should_show_email_otp_screen) {
 				otpData = {
 					isScreenVisible: true,
-					email: data?.email
+					email: data.email || null
 				};
 				return;
 			}
@@ -84,12 +89,7 @@
 				componentState.error = null;
 				state.setAuthData({
 					user: res.user || null,
-					token: {
-						access_token: res.access_token,
-						expires_in: res.expires_in,
-						refresh_token: res.refresh_token,
-						id_token: res.id_token
-					},
+					token: res,
 					config: state.config,
 					loading: false
 				});

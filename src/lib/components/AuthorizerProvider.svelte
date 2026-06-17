@@ -72,20 +72,14 @@
 	let intervalRef: any;
 
 	const getToken = async () => {
-		const metaRes = await state.authorizerRef.getMetaData();
+		const { data: metaRes } = await state.authorizerRef.getMetaData();
 		try {
-			const res = await state.authorizerRef.getSession();
-			if (res.access_token && res.user) {
-				const token = {
-					access_token: res.access_token,
-					expires_in: res.expires_in,
-					id_token: res.id_token,
-					refresh_token: res.refresh_token || ''
-				};
+			const { data: res } = await state.authorizerRef.getSession();
+			if (res?.access_token && res?.user) {
 				dispatch({
 					type: AuthorizerProviderActionType.SET_AUTH_DATA,
 					payload: {
-						token,
+						token: res,
 						user: res.user,
 						config: metaRes,
 						loading: false
@@ -94,7 +88,7 @@
 				if (intervalRef) clearInterval(intervalRef);
 				intervalRef = setInterval(() => {
 					getToken();
-				}, res.expires_in * 1000);
+				}, (res.expires_in ?? 0) * 1000);
 			} else {
 				dispatch({
 					type: AuthorizerProviderActionType.SET_AUTH_DATA,
@@ -144,7 +138,7 @@
 						if (intervalRef) clearInterval(intervalRef);
 						intervalRef = setInterval(() => {
 							getToken();
-						}, token.expires_in * 1000);
+						}, (token.expires_in ?? 0) * 1000);
 					}
 				},
 				setAuthData: (data: AuthorizerInputState) => {
@@ -156,7 +150,7 @@
 						if (intervalRef) clearInterval(intervalRef);
 						intervalRef = setInterval(() => {
 							getToken();
-						}, data.token.expires_in * 1000);
+						}, (data.token.expires_in ?? 0) * 1000);
 					}
 				},
 				setUser: (user: User) => {

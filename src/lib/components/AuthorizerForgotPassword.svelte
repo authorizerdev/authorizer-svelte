@@ -40,13 +40,17 @@
 	const onSubmit = async () => {
 		try {
 			componentState.loading = true;
-			const res = await state.authorizerRef.forgotPassword({
+			const { data: res, errors } = await state.authorizerRef.forgotPassword({
 				email: componentState.email || '',
 				state: urlProps.state || '',
 				redirect_uri: urlProps.redirect_uri || state.config.redirectURL || window.location.origin
 			});
 			componentState.loading = false;
-			if (res && res.message) {
+			if (errors && errors.length) {
+				componentState.error = errors[0]?.message || '';
+				return;
+			}
+			if (res?.message) {
 				componentState.error = null;
 				componentState.successMessage = res.message;
 			}

@@ -5,7 +5,7 @@
 	import { ButtonAppearance, Views, MessageType } from '../constants';
 	import Message from './Message.svelte';
 	import type { AuthorizerState } from '../types';
-	import type { VerifyOtpInput } from '@authorizerdev/authorizer-js';
+	import type { VerifyOtpRequest } from '@authorizerdev/authorizer-js';
 
 	export let setView: Function | undefined = undefined;
 	export let onLogin: Function | undefined = undefined;
@@ -45,7 +45,7 @@
 
 	const onSubmit = async () => {
 		componentState.successMessage = null;
-		const data: VerifyOtpInput = {
+		const data: VerifyOtpRequest = {
 			email,
 			otp: componentState.otp || ''
 		};
@@ -54,18 +54,17 @@
 		}
 		try {
 			componentState.loading = true;
-			const res = await state.authorizerRef.verifyOtp(data);
+			const { data: res, errors } = await state.authorizerRef.verifyOtp(data);
 			componentState.loading = false;
+			if (errors && errors.length) {
+				componentState.error = errors[0]?.message || '';
+				return;
+			}
 			if (res) {
 				componentState.error = null;
 				state.setAuthData({
 					user: res.user || null,
-					token: {
-						access_token: res.access_token,
-						expires_in: res.expires_in,
-						refresh_token: res.refresh_token,
-						id_token: res.id_token
-					},
+					token: res,
 					config: state.config,
 					loading: false
 				});
@@ -88,11 +87,15 @@
 		componentState.successMessage = null;
 		try {
 			componentState.sendingOtp = true;
-			const res = await state.authorizerRef.resendOtp({
+			const { data: res, errors } = await state.authorizerRef.resendOtp({
 				email
 			});
 			componentState.sendingOtp = false;
-			if (res && res?.message) {
+			if (errors && errors.length) {
+				componentState.error = errors[0]?.message || '';
+				return;
+			}
+			if (res?.message) {
 				componentState.error = null;
 				componentState.successMessage = res.message;
 			}
