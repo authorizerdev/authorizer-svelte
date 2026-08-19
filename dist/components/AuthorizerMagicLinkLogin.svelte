@@ -1,0 +1,96 @@
+<script>import { StyledButton, StyledFormGroup } from "../styledComponents";
+import { store } from "../store";
+import { MessageType, ButtonAppearance } from "../constants";
+import { isValidEmail } from "../utils/common";
+import Message from "./Message.svelte";
+export let onMagicLinkLogin = void 0;
+export let urlProps;
+export let roles = void 0;
+let state;
+let componentState = {
+  error: null,
+  successMessage: null,
+  loading: false,
+  email: null
+};
+$:
+  emailError = componentState.email === "" ? "Email is required" : componentState.email && !isValidEmail(componentState.email) ? "Please enter valid email" : null;
+store.subscribe((data) => {
+  state = data;
+});
+const onErrorClose = () => {
+  componentState.error = null;
+};
+const onSubmit = async () => {
+  try {
+    componentState.loading = true;
+    const data = {
+      email: componentState.email || "",
+      state: urlProps.state || "",
+      redirect_uri: urlProps.redirect_uri || ""
+    };
+    if (roles && roles.length) {
+      data.roles = roles;
+    }
+    const { data: res, errors } = await state.authorizerRef.magicLinkLogin(data);
+    componentState.loading = false;
+    if (errors && errors.length) {
+      componentState.error = errors[0].message;
+      return;
+    }
+    if (res) {
+      componentState.error = null;
+      componentState.successMessage = res.message || ``;
+      if (onMagicLinkLogin) {
+        onMagicLinkLogin(res);
+      }
+    }
+    if (urlProps.redirect_uri) {
+      setTimeout(() => {
+        window.location.replace(urlProps.redirect_uri || "");
+      }, 3e3);
+    }
+  } catch (error) {
+    componentState.loading = false;
+    componentState.error = error?.message || "";
+  }
+};
+</script>
+
+{#if componentState.successMessage}
+	<Message type={MessageType.Success} text={componentState.successMessage} />
+{:else}
+	{#if componentState.error}
+		<Message type={MessageType.Error} text={componentState.error} onClose={onErrorClose} />
+	{/if}
+	<form on:submit|preventDefault={onSubmit} name="authorizer-magic-login-form">
+		<StyledFormGroup hasError={!!emailError}>
+			<label slot="form-input-label" class="form-input-label" for="authorizer-magic-link-login-email">
+				<span> * </span>
+				Email
+			</label>
+			<input
+				id="authorizer-magic-link-login-email"
+				slot="form-input-field"
+				class={emailError ? 'form-input-field input-error-content' : 'form-input-field'}
+				placeholder="eg. foo@bar.com"
+				type="email"
+				bind:value={componentState.email}
+			/>
+			<div slot="form-input-error" class="form-input-error">
+				{emailError}
+			</div>
+		</StyledFormGroup>
+		<br />
+		<StyledButton
+			appearance={ButtonAppearance.Primary}
+			disabled={!componentState.email || Boolean(emailError) || componentState.loading}
+		>
+			{#if componentState.loading}
+				Processing ...
+			{:else}
+				Send Email
+			{/if}
+		</StyledButton>
+	</form>
+{/if}

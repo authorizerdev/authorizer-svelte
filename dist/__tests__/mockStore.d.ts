@@ -1,0 +1,11 @@
+import type { AuthorizerState } from '../types';
+export declare const mockLogin: any;
+export declare const mockSignup: any;
+export declare const mockForgotPassword: any;
+export declare const mockResetPassword: any;
+export declare const mockMagicLinkLogin: any;
+export declare const mockVerifyOtp: any;
+export declare const mockResendOtp: any;
+export declare const mockGetMetaData: any;
+export declare const mockGetSession: any;
+export declare const store: import("svelte/store").Writable<AuthorizerState>;

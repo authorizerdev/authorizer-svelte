@@ -1,0 +1,20 @@
+export declare const getIntervalDiff: (accessTokenExpiresAt: number) => number;
+export declare const getCrypto: () => Crypto | null;
+export declare const createRandomString: () => string;
+export declare const createQueryParams: (params: Record<string, string>) => string;
+export declare const isValidEmail: (email: string) => boolean;
+export declare const capitalizeFirstLetter: (data: string) => string;
+export declare const isValidOtp: (otp: string) => boolean;
+export declare const formatErrorMessage: (message: string) => string;
+export declare const hasSpecialChar: (char: string) => boolean;
+export declare const validatePassword: (value: string) => {
+    score: number;
+    strength: string;
+    hasSixChar: boolean;
+    hasLowerCase: boolean;
+    hasUpperCase: boolean;
+    hasNumericChar: boolean;
+    hasSpecialChar: boolean;
+    maxThirtySixChar: boolean;
+    isValid: boolean;
+};
